@@ -25,7 +25,7 @@ namespace Tower_Defense
             Form f = this.FindForm();
             f.Controls.Remove(this);
             ShopScreen ss = new ShopScreen();
-            this.Controls.Add(ss);
+            f.Controls.Add(ss);
         }
     }
 }

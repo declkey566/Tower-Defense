@@ -117,4 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Mr.Knight:
+
+Goblins are storming the castle, it is up to you to protect the kingdom. Here is 100 coins for you to bolster your defences! 
+Purchase towers from this shop and save the kingdom! Click the gold coin to purchase a tower.</value>
+  </data>
 </root>

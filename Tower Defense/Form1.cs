@@ -14,12 +14,16 @@ namespace Tower_Defense
     {
         public static string userName;
         int score;
-        int coins;
+        public  static int coins=100;
+        public static int basic = 0;
+        public static int fast = 0;
+        public static int strong = 0;
+        public static int slot;
         public Form1()
         {
             InitializeComponent();
-            Form f = this.FindForm();
-            f.Controls.Remove(this);
+            //Form f = this.FindForm();
+            //f.Controls.Remove(this);
             MainScreen ms = new MainScreen();
             this.Controls.Add(ms);
 
