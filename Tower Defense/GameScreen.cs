@@ -28,7 +28,8 @@ namespace Tower_Defense
        // int counter = 0;
         int newX=210;
         int newY;
-        //int newY2;
+        int newX2 = 210;
+        int newY2;
         int CastleHP = 100;
         int i = 0;
 
@@ -264,7 +265,7 @@ namespace Tower_Defense
             
             if (Level == 1)
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     basicGList.Add(basicG);
                 }
@@ -285,52 +286,74 @@ namespace Tower_Defense
         private void gameLoop_Tick() //object sender, EventArgs e
         {
             while (CastleHP != 0)
-            {               
-                foreach (Goblin basicG in basicGList)
+            {
+                
+                for (int i = 1; i < basicGList.Count; i++)
                 {
-                    GoblinBoxes.Add(GoblinBox1);
-                    i++;
+                    //GoblinBoxes.Add(GoblinBox1);
+                    GoblinBoxes.Add((PictureBox)Controls.Find("GoblinBox" + i, true)[0]);
                 }
-                    if (GoblinBoxes[i-1].Location.Y < 150 && GoblinBoxes[i-1].Location.X < 250)
+                    
+               
+                    if (GoblinBoxes[i].Location.Y < 150 && GoblinBoxes[i].Location.X < 250)
                     {
 
-                        basicG.Move("down");
-                        newY = GoblinBoxes[i - 1].Location.Y + 1;
-                        label6.Text = Convert.ToString(newY);
+                        basicGList[i].Move("down");
+                        newY = GoblinBoxes[i].Location.Y + 1;
+                        label6.Text = Convert.ToString(newY2);                                                  
 
                     }
+                if (GoblinBoxes[i].Location.Y > 125 && GoblinBoxes[i+1].Location.Y < 150)                                                                                                                                                                                                                                        
+                {
+                    basicGList[i+1].Move("down");
+                    newY2 = GoblinBoxes[i + 1].Location.Y + 1;
+                    label6.Text = Convert.ToString(newY2);
+                }
 
-                    if (newY == 150 && GoblinBoxes[i - 1].Location.X <250)
+                if (newY == 150 && GoblinBoxes[i].Location.X <250 )
                     {
 
-                        basicG.Move("left");
-                        newX = GoblinBoxes[i - 1].Location.X - 1;
-                        label7.Text = Convert.ToString(newX);
+                        basicGList[i].Move("left");
+                        newX = GoblinBoxes[i].Location.X - 1;
+                   
+                    label7.Text = Convert.ToString(newX2);
 
                     }
+                if (newY2 == 150 && newX2 > 90)
+                {
+                    basicGList[i+1].Move("left");
+                    newX2 = GoblinBoxes[i + 1].Location.X - 1;
+                    label7.Text = Convert.ToString(newX2);
+                }
 
-                    if (newX == 90)
+                if (newX == 90)
                     {
-                        basicG.Move("down");
-                        newY = GoblinBoxes[i - 1].Location.Y + 1;
-                        label6.Text = Convert.ToString(newY);
+                    basicGList[i].Move("down");
+                        newY = GoblinBoxes[i].Location.Y + 1;
+                        label6.Text = Convert.ToString(newY2);
 
                     }
+                if (newX2 == 90 && newY2 < 440)
+                {
+                    basicGList[i + 1].Move("down");
+                    newY2 = GoblinBoxes[i + 1].Location.Y + 1;
+                    label7.Text = Convert.ToString(newY2);
+                }
 
-                    if (newY == 440)
+                if (newY == 440)
                     {
 
-                        basicG.Move("right");
-                        newX = GoblinBoxes[i - 1].Location.X + 1;
-                        label7.Text = Convert.ToString(newX);
+                    basicGList[i].Move("right");
+                        newX = GoblinBoxes[i].Location.X + 1;
+                        label7.Text = Convert.ToString(newX2);
 
                     }
 
                     if (newX == 385)
                     {
-                        basicG.Move("up");
-                        newY = GoblinBoxes[i - 1].Location.Y - 1;
-                        label6.Text = Convert.ToString(newY);
+                    basicGList[i].Move("up");
+                        newY = GoblinBoxes[i].Location.Y - 1;
+                        label6.Text = Convert.ToString(newY2);
 
 
                     }
@@ -338,22 +361,27 @@ namespace Tower_Defense
                    if (newY == 75)
                     {
 
-                        basicG.Move("right");
-                        newX = GoblinBoxes[i - 1].Location.X + 1;
-                       label7.Text = Convert.ToString(newX);
+                    basicGList[i].Move("right");
+                        newX = GoblinBoxes[i].Location.X + 1;
+                       label7.Text = Convert.ToString(newX2);
                  
                     }
 
                     if (newX == 590)
                     {
-                        basicG.Move("down");
-                        newY = GoblinBoxes[i - 1].Location.Y + 1;
-                        label6.Text = Convert.ToString(newY);
+                    basicGList[i].Move("down");
+                        newY = GoblinBoxes[i].Location.Y + 1;
+                        label6.Text = Convert.ToString(newY2);
 
 
                     }
-                    GoblinBoxes[i - 1].Location = new Point(newX, newY);
-                
+                    GoblinBoxes[i].Location = new Point(newX, newY);
+                    GoblinBoxes[i+1].Location = new Point(newX2, newY2);
+                // if (newY == 150)
+                // {
+                //     GoblinBoxes[i] = GoblinBoxes[i+1];
+                // }
+
                 Refresh();
             }
 

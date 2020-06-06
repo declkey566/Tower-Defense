@@ -65,6 +65,8 @@
             this.pictureBox25 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.GoblinBox2 = new System.Windows.Forms.PictureBox();
+            this.GoblinBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -91,6 +93,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GoblinBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GoblinBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GoblinBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -545,12 +549,36 @@
             this.label7.TabIndex = 32;
             this.label7.Text = "label7";
             // 
+            // GoblinBox2
+            // 
+            this.GoblinBox2.BackColor = System.Drawing.Color.Transparent;
+            this.GoblinBox2.Image = global::Tower_Defense.Properties.Resources.goblin;
+            this.GoblinBox2.Location = new System.Drawing.Point(242, 3);
+            this.GoblinBox2.Name = "GoblinBox2";
+            this.GoblinBox2.Size = new System.Drawing.Size(43, 61);
+            this.GoblinBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.GoblinBox2.TabIndex = 33;
+            this.GoblinBox2.TabStop = false;
+            // 
+            // GoblinBox3
+            // 
+            this.GoblinBox3.BackColor = System.Drawing.Color.Transparent;
+            this.GoblinBox3.Image = global::Tower_Defense.Properties.Resources.goblin;
+            this.GoblinBox3.Location = new System.Drawing.Point(263, 3);
+            this.GoblinBox3.Name = "GoblinBox3";
+            this.GoblinBox3.Size = new System.Drawing.Size(43, 61);
+            this.GoblinBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.GoblinBox3.TabIndex = 34;
+            this.GoblinBox3.TabStop = false;
+            // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.GoblinBox3);
+            this.Controls.Add(this.GoblinBox2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.GoblinBox1);
@@ -609,6 +637,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GoblinBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GoblinBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GoblinBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -652,5 +682,7 @@
         private System.Windows.Forms.PictureBox pictureBox25;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.PictureBox GoblinBox2;
+        private System.Windows.Forms.PictureBox GoblinBox3;
     }
 }
