@@ -520,7 +520,7 @@
             // 
             this.pictureBox25.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox25.Image = global::Tower_Defense.Properties.Resources.ogre;
-            this.pictureBox25.Location = new System.Drawing.Point(190, 70);
+            this.pictureBox25.Location = new System.Drawing.Point(3, 67);
             this.pictureBox25.Name = "pictureBox25";
             this.pictureBox25.Size = new System.Drawing.Size(85, 78);
             this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

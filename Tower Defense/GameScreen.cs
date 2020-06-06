@@ -25,11 +25,12 @@ namespace Tower_Defense
 
         List<PictureBox> GoblinBoxes = new List<PictureBox>();
         int Level = 0;
-        int counter = 0;
+       // int counter = 0;
         int newX=210;
         int newY;
-        int newY2;
+        //int newY2;
         int CastleHP = 100;
+        int i = 0;
 
         Goblin basicG = new Goblin(100, 50, 1, 100, 100);
         Goblin fastG = new Goblin(50, 100, 2, 100, 100);
@@ -284,8 +285,7 @@ namespace Tower_Defense
         private void gameLoop_Tick() //object sender, EventArgs e
         {
             while (CastleHP != 0)
-            {
-                int i = 0;
+            {               
                 foreach (Goblin basicG in basicGList)
                 {
                     GoblinBoxes.Add(GoblinBox1);
