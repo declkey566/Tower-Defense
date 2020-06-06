@@ -154,5 +154,14 @@
   <ItemGroup>
     <None Include="Resources\strong.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\goblin gif.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\goblin.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ogre.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

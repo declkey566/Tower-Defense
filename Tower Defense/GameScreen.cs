@@ -22,11 +22,21 @@ namespace Tower_Defense
         List<Goblin> fastGList = new List<Goblin>();
         List<Goblin> strongGList = new List<Goblin>();
         List<Goblin> bossGList = new List<Goblin>();
-
         int Level = 0;
+        int counter = 0;
+        int newX;
+        int newY;
+        int CastleHP = 100;
+
+        Goblin basicG = new Goblin(100, 50, 1, 100, 100);
+        Goblin fastG = new Goblin(50, 100, 2, 100, 100);
         public GameScreen()
         {
             InitializeComponent();
+            OnStart();
+        }
+        public void OnStart()
+        {
             int newX2 = label2.Location.X - pictureBox20.Location.X;
             int newY2 = label2.Location.Y - pictureBox20.Location.Y;
             label2.Location = new Point(newX2, newY2);
@@ -233,20 +243,20 @@ namespace Tower_Defense
         private void button1_Click(object sender, EventArgs e)
         {
             panel1.Visible = false;
-        }
+        } //Panel exit button is pressed
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) //Defend button is pressed
         {
             button3.Visible = false;
             Level = Level + 1;
             Spawn();
+            //GameLoop();
             //Run Gameplay, set goblins and have them move in, set game level
         }
 
         public void Spawn()
         {
-            Goblin basicG = new Goblin(100, 50, 50,100,0);
-            Goblin fastG = new Goblin(50, 100, 100,100,0);
+            
             if (Level == 1)
             {
                 for (int i = 0; i < 4; i++)
@@ -254,7 +264,7 @@ namespace Tower_Defense
                     basicGList.Add(basicG);
                 }
             }
-            if (Level == 1)
+            if (Level == 2)
             {
                 for (int i = 0; i < 4; i++)
                 {
@@ -267,17 +277,43 @@ namespace Tower_Defense
             }
 
         }
+        private void GameScreen_Load(object sender, EventArgs e)
+        {
 
-        //public void GoblinMove()
-       // {
-        //    Rectangle basicRec = new Rectangle(Goblin.x, Goblin.y, 50, 50);
-       // }
-        //private void MainScreen_Paint(object sender, PaintEventArgs e)
-        //{
-        //    foreach (Goblin basicG in basicGList)
-        //    {
-       //         e.Graphics.FillRectangle(Goblin.basicBrush,  );
-        //    }
-      //  }
+        }
+        private void gameLoop_Tick(object sender, EventArgs e)
+        {
+            while (CastleHP != 0)
+            {
+                if (pictureBox24.Location.Y < 100)
+                {
+                    basicG.Move("down");
+                    newY = pictureBox24.Location.Y + 10;
+                    label6.Text = Convert.ToString(newY);
+                }
+                if (pictureBox24.Location.Y == 100)
+                {
+                   basicG.Move("left");
+                    newX = pictureBox24.Location.X + 10;
+                    label7.Text = Convert.ToString(newX);
+                }
+                pictureBox24.Location = new Point(newX, newY);
+                //  GoblinMove();
+                //Refresh();
+            }
+
+        }
+
+        //  private void GoblinMove()
+        // {
+        //   if (pictureBox24.Location.Y < 100)
+        //   {
+        //        basicG.Move("down");
+        //       int newY = pictureBox24.Location.Y + 1;
+        //       pictureBox24.Location = new Point(pictureBox24.Location.X, newY);
+        //  }  
+
+        // }
+
     }
 }
