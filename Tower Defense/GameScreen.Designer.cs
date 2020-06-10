@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameScreen));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -67,6 +68,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.GoblinBox2 = new System.Windows.Forms.PictureBox();
             this.GoblinBox3 = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -571,6 +573,11 @@
             this.GoblinBox3.TabIndex = 34;
             this.GoblinBox3.TabStop = false;
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 20;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -684,5 +691,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox GoblinBox2;
         private System.Windows.Forms.PictureBox GoblinBox3;
+        private System.Windows.Forms.Timer timer1;
     }
 }

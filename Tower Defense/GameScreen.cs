@@ -32,6 +32,7 @@ namespace Tower_Defense
         int newY2;
         int CastleHP = 100;
         int i = 0;
+        int loop;
 
         Goblin basicG = new Goblin(100, 50, 1, 100, 100);
         Goblin fastG = new Goblin(50, 100, 2, 100, 100);
@@ -192,7 +193,7 @@ namespace Tower_Defense
                 pictureBoxes[Form1.slot].Image = Tower_Defense.Properties.Resources.basic;
                 pictureBoxes[Form1.slot].Width = 81;
                 panel1.Visible = false;
-                Form1.strong = Form1.strong - 1;
+                Form1.basic = Form1.basic - 1;
                 label3.Text = "Basic: x" + (Form1.basic);
                 int Damage = 10;
                 int ShotSpeed = 10;
@@ -255,8 +256,7 @@ namespace Tower_Defense
             button3.Visible = false;
             Level = Level + 1;
             Spawn();
-            gameLoop_Tick();
-            //GameLoop();
+            timer1.Enabled = true;
             //Run Gameplay, set goblins and have them move in, set game level
         }
 
@@ -283,57 +283,60 @@ namespace Tower_Defense
             }
 
         }
-        private void gameLoop_Tick() //object sender, EventArgs e
+        //private void gameLoop_Tick() //object sender, EventArgs e
+        //{
+      //         
+        //}
+
+        private void timer1_Tick(object sender, EventArgs e)
         {
             while (CastleHP != 0)
             {
-                
+
                 for (int i = 1; i < basicGList.Count; i++)
                 {
-                    //GoblinBoxes.Add(GoblinBox1);
                     GoblinBoxes.Add((PictureBox)Controls.Find("GoblinBox" + i, true)[0]);
                 }
-                    
-               
-                    if (GoblinBoxes[i].Location.Y < 150 && GoblinBoxes[i].Location.X < 250)
-                    {
 
-                        basicGList[i].Move("down");
-                        newY = GoblinBoxes[i].Location.Y + 1;
-                        label6.Text = Convert.ToString(newY2);                                                  
-
-                    }
-                if (GoblinBoxes[i].Location.Y > 125 && GoblinBoxes[i+1].Location.Y < 150)                                                                                                                                                                                                                                        
+                if (GoblinBoxes[i].Location.Y < 150 && GoblinBoxes[i].Location.X < 250)
                 {
-                    basicGList[i+1].Move("down");
+
+                    basicGList[i].Move("down");
+                    newY = GoblinBoxes[i].Location.Y + 1;
+                   // label6.Text = Convert.ToString(newY2);
+
+                }
+                if (GoblinBoxes[i].Location.Y > 125 && GoblinBoxes[i + 1].Location.Y < 150)
+                {
+                    basicGList[i + 1].Move("down");
                     newY2 = GoblinBoxes[i + 1].Location.Y + 1;
-                    label6.Text = Convert.ToString(newY2);
+                    label7.Text = Convert.ToString(newY2);
                 }
 
-                if (newY == 150 && GoblinBoxes[i].Location.X <250 )
-                    {
-
-                        basicGList[i].Move("left");
-                        newX = GoblinBoxes[i].Location.X - 1;
-                   
-                    label7.Text = Convert.ToString(newX2);
-
-                    }
-                if (newY2 == 150 && newX2 > 90)
+                if (newY == 150 && GoblinBoxes[i].Location.X < 250)
                 {
-                    basicGList[i+1].Move("left");
+
+                    basicGList[i].Move("left");
+                    newX = GoblinBoxes[i].Location.X - 1;
+
+                   // label7.Text = Convert.ToString(newX2);
+
+                }
+                if (newY2 == 150 && newX2 <380)// && GoblinBoxes[i+1].Location.X < 250
+                {
+                    basicGList[i + 1].Move("left");
                     newX2 = GoblinBoxes[i + 1].Location.X - 1;
-                    label7.Text = Convert.ToString(newX2);
+                    label6.Text = Convert.ToString(newX2);
                 }
 
                 if (newX == 90)
-                    {
+                {
                     basicGList[i].Move("down");
-                        newY = GoblinBoxes[i].Location.Y + 1;
-                        label6.Text = Convert.ToString(newY2);
+                    newY = GoblinBoxes[i].Location.Y + 1;
+                    //label6.Text = Convert.ToString(newY2);
 
-                    }
-                if (newX2 == 90 && newY2 < 440)
+                }
+                if (newX2 == 90)//&& newY2 < 440
                 {
                     basicGList[i + 1].Move("down");
                     newY2 = GoblinBoxes[i + 1].Location.Y + 1;
@@ -341,46 +344,67 @@ namespace Tower_Defense
                 }
 
                 if (newY == 440)
-                    {
+                {
 
                     basicGList[i].Move("right");
-                        newX = GoblinBoxes[i].Location.X + 1;
-                        label7.Text = Convert.ToString(newX2);
+                    newX = GoblinBoxes[i].Location.X + 1;
+                   // label7.Text = Convert.ToString(newX2);
 
-                    }
+                }
+                if (newY2 == 440) //&& newX2 < 385
+                {
+                    basicGList[i + 1].Move("right");
+                    newX2 = GoblinBoxes[i + 1].Location.X + 1;
+                    label6.Text = Convert.ToString(newX2);
+                }
 
-                    if (newX == 385)
-                    {
+                if (newX == 385)
+                {
                     basicGList[i].Move("up");
-                        newY = GoblinBoxes[i].Location.Y - 1;
-                        label6.Text = Convert.ToString(newY2);
+                    newY = GoblinBoxes[i].Location.Y - 1;
+                  //  label6.Text = Convert.ToString(newY2);
 
 
-                    }
+                }
+                if (newX2 == 385)//&& newY2 > 75
+                {
+                    basicGList[i + 1].Move("up");
+                    newY2 = GoblinBoxes[i + 1].Location.Y - 1;
+                    label7.Text = Convert.ToString(newY2);
+                }
 
-                   if (newY == 75)
-                    {
+                if (newY == 75)
+                {
 
                     basicGList[i].Move("right");
-                        newX = GoblinBoxes[i].Location.X + 1;
-                       label7.Text = Convert.ToString(newX2);
-                 
-                    }
+                    newX = GoblinBoxes[i].Location.X + 1;
+                   // label7.Text = Convert.ToString(newX2);
 
-                    if (newX == 590)
-                    {
+                }
+                if (newY2 == 75) // && newX2 < 590
+                {
+                    basicGList[i + 1].Move("right");
+                    newX2 = GoblinBoxes[i + 1].Location.X + 1;
+                    label6.Text = Convert.ToString(newX2);
+                }
+
+                if (newX == 590)
+                {
                     basicGList[i].Move("down");
-                        newY = GoblinBoxes[i].Location.Y + 1;
-                        label6.Text = Convert.ToString(newY2);
+                    newY = GoblinBoxes[i].Location.Y + 1;
+                    //label6.Text = Convert.ToString(newY2);
 
 
-                    }
-                    GoblinBoxes[i].Location = new Point(newX, newY);
-                    GoblinBoxes[i+1].Location = new Point(newX2, newY2);
-                // if (newY == 150)
-                // {
-                //     GoblinBoxes[i] = GoblinBoxes[i+1];
-                // }
+                }
+                if (newX2 == 590)// && newY2 <440
+                {
+                    basicGList[i + 1].Move("down");
+                    newY2 = GoblinBoxes[i + 1].Location.Y + 1;
+                    label7.Text = Convert.ToString(newY2);
+                }
+
+                GoblinBoxes[i].Location = new Point(newX, newY);
+                GoblinBoxes[i + 1].Location = new Point(newX2, newY2);
 
                 Refresh();
             }
