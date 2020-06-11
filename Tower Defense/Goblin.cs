@@ -10,7 +10,7 @@ namespace Tower_Defense
     public class Goblin
     {
         //public SolidBrush basicBrush = new SolidBrush(Color.Black);
-        public static int Health, Damage, Speed, x, y;
+        public  int Health, Damage, Speed, x, y;
         public Goblin(int _Health, int _Damage, int _Speed, int _x, int _y )
         {
             Health = _Health;
@@ -24,19 +24,19 @@ namespace Tower_Defense
         {
             if (direction == "left")
             {
-                x = x + Speed;
+                x = x - Speed;
             }
             if (direction=="right")
             {
-                x = x - Speed;
+                x = x + Speed;
             }
             if (direction == "up")
             {
-                y = y + Speed;
+                y = y - Speed;
             }
             if (direction == "down")
             {
-                y = y - Speed;
+                y = y + Speed;
             }
 
         }

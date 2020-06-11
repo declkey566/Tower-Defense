@@ -33,8 +33,9 @@ namespace Tower_Defense
         int CastleHP = 100;
         int i = 0;
         int loop;
+        
 
-        Goblin basicG = new Goblin(100, 50, 1, 100, 100);
+        Goblin basicG = new Goblin(100, 50, 1, 214, 3);
         Goblin fastG = new Goblin(50, 100, 2, 100, 100);
         public GameScreen()
         {
@@ -298,114 +299,66 @@ namespace Tower_Defense
                     GoblinBoxes.Add((PictureBox)Controls.Find("GoblinBox" + i, true)[0]);
                 }
 
-                if (GoblinBoxes[i].Location.Y < 150 && GoblinBoxes[i].Location.X < 250)
+                if (basicGList[i].y < 150 && basicGList[i].x < 250)
                 {
-
                     basicGList[i].Move("down");
-                    newY = GoblinBoxes[i].Location.Y + 1;
-                   // label6.Text = Convert.ToString(newY2);
-
                 }
-                if (GoblinBoxes[i].Location.Y > 125 && GoblinBoxes[i + 1].Location.Y < 150)
+                if (basicGList[i].y > 125 && basicGList[i + 1].y < 150)
                 {
                     basicGList[i + 1].Move("down");
-                    newY2 = GoblinBoxes[i + 1].Location.Y + 1;
-                    label7.Text = Convert.ToString(newY2);
                 }
-
-                if (newY == 150 && GoblinBoxes[i].Location.X < 250)
+                if (basicGList[i].y == 151 && basicGList[i].x < 250)
                 {
-
                     basicGList[i].Move("left");
-                    newX = GoblinBoxes[i].Location.X - 1;
-
-                   // label7.Text = Convert.ToString(newX2);
-
                 }
-                if (newY2 == 150 && newX2 <380)// && GoblinBoxes[i+1].Location.X < 250
+                if (basicGList[i + 1].y == 151 && basicGList[i].x <380)
                 {
                     basicGList[i + 1].Move("left");
-                    newX2 = GoblinBoxes[i + 1].Location.X - 1;
-                    label6.Text = Convert.ToString(newX2);
                 }
-
-                if (newX == 90)
+                if (basicGList[i].x == 90)
                 {
                     basicGList[i].Move("down");
-                    newY = GoblinBoxes[i].Location.Y + 1;
-                    //label6.Text = Convert.ToString(newY2);
-
                 }
-                if (newX2 == 90)//&& newY2 < 440
+                if (basicGList[i + 1].x == 90)
                 {
                     basicGList[i + 1].Move("down");
-                    newY2 = GoblinBoxes[i + 1].Location.Y + 1;
-                    label7.Text = Convert.ToString(newY2);
                 }
-
-                if (newY == 440)
+                if (basicGList[i].y == 441)
                 {
-
                     basicGList[i].Move("right");
-                    newX = GoblinBoxes[i].Location.X + 1;
-                   // label7.Text = Convert.ToString(newX2);
-
                 }
-                if (newY2 == 440) //&& newX2 < 385
+                if (basicGList[i + 1].y == 441)
                 {
                     basicGList[i + 1].Move("right");
-                    newX2 = GoblinBoxes[i + 1].Location.X + 1;
-                    label6.Text = Convert.ToString(newX2);
                 }
-
-                if (newX == 385)
+                if (basicGList[i].x == 386)
                 {
                     basicGList[i].Move("up");
-                    newY = GoblinBoxes[i].Location.Y - 1;
-                  //  label6.Text = Convert.ToString(newY2);
-
-
                 }
-                if (newX2 == 385)//&& newY2 > 75
+                if (basicGList[i].x == 386)
                 {
                     basicGList[i + 1].Move("up");
-                    newY2 = GoblinBoxes[i + 1].Location.Y - 1;
-                    label7.Text = Convert.ToString(newY2);
                 }
-
-                if (newY == 75)
+                if (basicGList[i].y == 75)
                 {
-
                     basicGList[i].Move("right");
-                    newX = GoblinBoxes[i].Location.X + 1;
-                   // label7.Text = Convert.ToString(newX2);
-
                 }
-                if (newY2 == 75) // && newX2 < 590
+                if (basicGList[i + 1].y == 75 )
                 {
                     basicGList[i + 1].Move("right");
-                    newX2 = GoblinBoxes[i + 1].Location.X + 1;
-                    label6.Text = Convert.ToString(newX2);
                 }
-
-                if (newX == 590)
+                if (basicGList[i].x == 590)
                 {
                     basicGList[i].Move("down");
-                    newY = GoblinBoxes[i].Location.Y + 1;
-                    //label6.Text = Convert.ToString(newY2);
-
-
                 }
-                if (newX2 == 590)// && newY2 <440
+                if (basicGList[i + 1].x == 590)
                 {
                     basicGList[i + 1].Move("down");
-                    newY2 = GoblinBoxes[i + 1].Location.Y + 1;
-                    label7.Text = Convert.ToString(newY2);
                 }
-
-                GoblinBoxes[i].Location = new Point(newX, newY);
-                GoblinBoxes[i + 1].Location = new Point(newX2, newY2);
-
+                label6.Text = Convert.ToString(basicGList[i+1].x);
+                label7.Text = Convert.ToString(basicGList[i+1].y);
+                GoblinBoxes[i].Location = new Point(basicGList[i].x, basicGList[i].y);
+                GoblinBoxes[i + 1].Location = new Point(basicGList[i+1].x, basicGList[i+1].y);
                 Refresh();
             }
 
