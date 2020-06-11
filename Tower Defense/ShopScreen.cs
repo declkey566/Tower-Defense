@@ -44,12 +44,6 @@ namespace Tower_Defense
             int newY11 = pictureBox6.Location.Y - pictureBox2.Location.Y;
             int newX12 = pictureBox7.Location.X - pictureBox2.Location.X;
             int newY12 = pictureBox7.Location.Y - pictureBox2.Location.Y;
-           // int newX13 = label9.Location.X - pictureBox5.Location.X;
-           // int newY13 = label9.Location.Y - pictureBox5.Location.Y;
-           // int newX14 = label10.Location.X - pictureBox6.Location.X;
-           // int newY14 = label10.Location.Y - pictureBox6.Location.Y;
-           // int newX15 = label11.Location.X - pictureBox7.Location.X;
-           // int newY15 = label11.Location.Y - pictureBox7.Location.Y;
             int newX16 = label12.Location.X - pictureBox2.Location.X;
             int newY16 = label12.Location.Y - pictureBox2.Location.Y;
             int newX17 = label13.Location.X - pictureBox2.Location.X;
