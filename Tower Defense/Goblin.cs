@@ -10,7 +10,8 @@ namespace Tower_Defense
     public class Goblin
     {
         //public SolidBrush basicBrush = new SolidBrush(Color.Black);
-        public  int Health, Damage, Speed, x, y;
+        public static int Health, Damage, Speed, x, y;
+        string direction;
         public Goblin(int _Health, int _Damage, int _Speed, int _x, int _y )
         {
             Health = _Health;
@@ -18,26 +19,63 @@ namespace Tower_Defense
             Speed = _Speed;
             x = _x;
             y = _y;
+            direction= "down";
 
         }
-        public void Move (string direction)
+        public void Move ()
         {
             if (direction == "left")
             {
-                x = x - Speed;
+                x -= Speed;
             }
             if (direction=="right")
             {
-                x = x + Speed;
+                x +=Speed;
             }
             if (direction == "up")
             {
-                y = y - Speed;
+                y -=Speed;
             }
             if (direction == "down")
             {
-                y = y + Speed;
+                y += Speed;
             }
+
+            if (x == 214 && y == 150)
+            {
+                direction = "left";
+            }
+
+            if (x == 90 && y == 150)
+            {
+                direction = "down";
+            }
+
+            if (x == 90 && y == 440)
+            {
+                direction = "right";
+            }
+
+            if (x == 385 && y == 440)
+            {
+                direction = "up";
+            }
+
+            if (x == 385 && y == 75)
+            {
+                direction = "right";
+            }
+
+            if (x == 590 && y == 75)
+            {
+                direction = "down";
+            }
+
+            if (x == 590 && y == 440)
+            {
+                direction = "right";
+            }
+
 
         }
     }

@@ -33,10 +33,11 @@ namespace Tower_Defense
         int CastleHP = 100;
         int i = 0;
         int loop;
+        int counter = 0;
         
 
-        Goblin basicG = new Goblin(100, 50, 1, 214, 3);
-        Goblin fastG = new Goblin(50, 100, 2, 100, 100);
+        //Goblin basicG = new Goblin(100, 50, 1, 214, 3);
+        Goblin fastG = new Goblin(50, 100, 2, 214, 3);
         public GameScreen()
         {
             InitializeComponent();
@@ -256,34 +257,34 @@ namespace Tower_Defense
         {
             button3.Visible = false;
             Level = Level + 1;
-            Spawn();
+           // Spawn();
             timer1.Enabled = true;
             //Run Gameplay, set goblins and have them move in, set game level
         }
 
-        public void Spawn()
-        {
+       // public void Spawn()
+       // {
             
-            if (Level == 1)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    basicGList.Add(basicG);
-                }
-            }
-            if (Level == 2)
-            {
-                for (int i = 0; i < 4; i++)
-                {
-                    basicGList.Add(basicG);
-                }
-                for (int i = 0; i < 3; i++)
-                {
-                    fastGList.Add(fastG);
-                }
-            }
+       //     if (Level == 1)
+           // {
+           ////     for (int i = 0; i < 3; i++)
+               // {
+               //     basicGList.Add(basicG);
+             //   }
+           // }
+         ////   if (Level == 2)
+         //   {
+          //      for (int i = 0; i < 4; i++)
+          //      {
+          //          basicGList.Add(basicG);
+          //      }
+           //     for (int i = 0; i < 3; i++)
+          //      {
+          //          fastGList.Add(fastG);
+           //     }
+           // }
 
-        }
+       // }
         //private void gameLoop_Tick() //object sender, EventArgs e
         //{
       //         
@@ -291,76 +292,93 @@ namespace Tower_Defense
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            while (CastleHP != 0)
+            counter++;
+            if (counter ==40)
             {
-
-                for (int i = 1; i < basicGList.Count; i++)
-                {
-                    GoblinBoxes.Add((PictureBox)Controls.Find("GoblinBox" + i, true)[0]);
-                }
-
-                if (basicGList[i].y < 150 && basicGList[i].x < 250)
-                {
-                    basicGList[i].Move("down");
-                }
-                if (basicGList[i].y > 125 && basicGList[i + 1].y < 150)
-                {
-                    basicGList[i + 1].Move("down");
-                }
-                if (basicGList[i].y == 151 && basicGList[i].x < 250)
-                {
-                    basicGList[i].Move("left");
-                }
-                if (basicGList[i + 1].y == 151 && basicGList[i].x <380)
-                {
-                    basicGList[i + 1].Move("left");
-                }
-                if (basicGList[i].x == 90)
-                {
-                    basicGList[i].Move("down");
-                }
-                if (basicGList[i + 1].x == 90)
-                {
-                    basicGList[i + 1].Move("down");
-                }
-                if (basicGList[i].y == 441)
-                {
-                    basicGList[i].Move("right");
-                }
-                if (basicGList[i + 1].y == 441)
-                {
-                    basicGList[i + 1].Move("right");
-                }
-                if (basicGList[i].x == 386)
-                {
-                    basicGList[i].Move("up");
-                }
-                if (basicGList[i].x == 386)
-                {
-                    basicGList[i + 1].Move("up");
-                }
-                if (basicGList[i].y == 75)
-                {
-                    basicGList[i].Move("right");
-                }
-                if (basicGList[i + 1].y == 75 )
-                {
-                    basicGList[i + 1].Move("right");
-                }
-                if (basicGList[i].x == 590)
-                {
-                    basicGList[i].Move("down");
-                }
-                if (basicGList[i + 1].x == 590)
-                {
-                    basicGList[i + 1].Move("down");
-                }
-                label6.Text = Convert.ToString(basicGList[i+1].x);
-                label7.Text = Convert.ToString(basicGList[i+1].y);
-                GoblinBoxes[i].Location = new Point(basicGList[i].x, basicGList[i].y);
-                GoblinBoxes[i + 1].Location = new Point(basicGList[i+1].x, basicGList[i+1].y);
-                Refresh();
+                Goblin basicG = new Goblin(100, 50, 1, 214, 3);
+                basicGList.Add(basicG);
+                counter = 0;
             }
+           // for (int i = 1; i < basicGList.Count; i++)
+            //{
+           //     GoblinBoxes.Add((PictureBox)Controls.Find("GoblinBox" + i, true)[0]);
+           // }
+            foreach (Goblin basicG in basicGList)
+            {
+                basicG.Move();
+            }
+            GoblinBox1.Location = new Point(Goblin.x, Goblin.y);
+
+
+            // GoblinBoxes[i].Location = new Point(Goblin.x, Goblin.y);
+
+            //GoblinBoxes[i + 1].Location = new Point(basicGList[i + 1].x, basicGList[i + 1].y);
+            Refresh();
+
+            // while (CastleHP != 0)
+            // {
+
+            //   if (basicGList[i].y < 150 && basicGList[i].x < 250)
+            //   {
+            //        basicGList[i].Move("down");
+            //   }
+            //   if (basicGList[i].y > 125 && basicGList[i + 1].y < 150)
+            //   {
+            //        basicGList[i + 1].Move("down");
+            //   }
+            //    if (basicGList[i].y == 151 && basicGList[i].x < 250)
+            //   {
+            //       basicGList[i].Move("left");
+            //   }
+            //   if (basicGList[i + 1].y == 151 && basicGList[i].x <380)
+            //   {
+            //      basicGList[i + 1].Move("left");
+            //    }
+            //   if (basicGList[i].x == 90)
+            //    {
+            //      basicGList[i].Move("down");
+            //   }
+            //   if (basicGList[i + 1].x == 90)
+            //  {
+            //      basicGList[i + 1].Move("down");
+            //  }
+            //  if (basicGList[i].y == 441)
+            // {
+            //       basicGList[i].Move("right");
+            //}
+            //  if (basicGList[i + 1].y == 441)
+            // {
+            //  basicGList[i + 1].Move("right");
+            //}
+            //   if (basicGList[i].x == 386)
+            // {
+            //    basicGList[i].Move("up");
+            // }
+            // if (basicGList[i].x == 386)
+            // {
+            //    basicGList[i + 1].Move("up");
+            // }
+            // if (basicGList[i].y == 75)
+            // {
+            //   basicGList[i].Move("right");
+            // }
+            // if (basicGList[i + 1].y == 75 )
+            // {
+            //     basicGList[i + 1].Move("right");
+            // }
+            // if (basicGList[i].x == 590)
+            // {
+            //    basicGList[i].Move("down");
+            // }
+            //if (basicGList[i + 1].x == 590)
+            // {
+            //    basicGList[i + 1].Move("down");
+            //}
+            // label6.Text = Convert.ToString(basicGList[i+1].x);
+            //label7.Text = Convert.ToString(basicGList[i+1].y);
+
+
+            // }
 
         }
 
