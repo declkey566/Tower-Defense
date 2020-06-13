@@ -62,12 +62,9 @@
             this.pictureBox22 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.GoblinBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox25 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.GoblinBox2 = new System.Windows.Forms.PictureBox();
-            this.GoblinBox3 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -93,10 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GoblinBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GoblinBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GoblinBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -511,17 +505,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // GoblinBox1
-            // 
-            this.GoblinBox1.BackColor = System.Drawing.Color.Transparent;
-            this.GoblinBox1.Image = global::Tower_Defense.Properties.Resources.goblin;
-            this.GoblinBox1.Location = new System.Drawing.Point(214, 3);
-            this.GoblinBox1.Name = "GoblinBox1";
-            this.GoblinBox1.Size = new System.Drawing.Size(43, 61);
-            this.GoblinBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.GoblinBox1.TabIndex = 29;
-            this.GoblinBox1.TabStop = false;
-            // 
             // pictureBox25
             // 
             this.pictureBox25.BackColor = System.Drawing.Color.Transparent;
@@ -551,28 +534,6 @@
             this.label7.TabIndex = 32;
             this.label7.Text = "label7";
             // 
-            // GoblinBox2
-            // 
-            this.GoblinBox2.BackColor = System.Drawing.Color.Transparent;
-            this.GoblinBox2.Image = global::Tower_Defense.Properties.Resources.goblin;
-            this.GoblinBox2.Location = new System.Drawing.Point(242, 3);
-            this.GoblinBox2.Name = "GoblinBox2";
-            this.GoblinBox2.Size = new System.Drawing.Size(43, 61);
-            this.GoblinBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.GoblinBox2.TabIndex = 33;
-            this.GoblinBox2.TabStop = false;
-            // 
-            // GoblinBox3
-            // 
-            this.GoblinBox3.BackColor = System.Drawing.Color.Transparent;
-            this.GoblinBox3.Image = global::Tower_Defense.Properties.Resources.goblin;
-            this.GoblinBox3.Location = new System.Drawing.Point(263, 3);
-            this.GoblinBox3.Name = "GoblinBox3";
-            this.GoblinBox3.Size = new System.Drawing.Size(43, 61);
-            this.GoblinBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.GoblinBox3.TabIndex = 34;
-            this.GoblinBox3.TabStop = false;
-            // 
             // timer1
             // 
             this.timer1.Interval = 20;
@@ -584,11 +545,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Controls.Add(this.GoblinBox3);
-            this.Controls.Add(this.GoblinBox2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.GoblinBox1);
             this.Controls.Add(this.pictureBox25);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.panel1);
@@ -616,7 +574,6 @@
             this.Controls.Add(this.pictureBox1);
             this.DoubleBuffered = true;
             this.Name = "GameScreen";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameScreen_Paint);
             this.Size = new System.Drawing.Size(805, 569);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -643,10 +600,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GoblinBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GoblinBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GoblinBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -686,12 +640,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.PictureBox GoblinBox1;
         private System.Windows.Forms.PictureBox pictureBox25;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.PictureBox GoblinBox2;
-        private System.Windows.Forms.PictureBox GoblinBox3;
         private System.Windows.Forms.Timer timer1;
     }
 }

@@ -35,7 +35,7 @@ namespace Tower_Defense
        // int CastleHP = 100;
        // int i = 0;
        // int loop;
-        int counter = 100;
+        int counter = 50;
         
 
         //Goblin basicG = new Goblin(100, 50, 1, 214, 3);
@@ -270,25 +270,14 @@ namespace Tower_Defense
             {
                 Goblin basicG = new Goblin(100, 50, 1, 214, 3,43,61);
                 basicGList.Add(basicG);
+                this.Controls.Add(basicG.pb);
                 counter = 0;
             }
             foreach (Goblin basicG in basicGList)
             {
                 basicG.Move();
             }
-
-           // GoblinBox1.Location = new Point(Goblin.x, Goblin.y);
-
             Refresh();
-
-
-        }
-        private void GameScreen_Paint(object sender, PaintEventArgs e)
-        {
-            foreach (Goblin basicG in basicGList)
-            {
-                e.Graphics.FillRectangle(basicGBrush, basicG.x, basicG.y, basicG.sizeX, basicG.sizeY);
-            }
         }
 
     }

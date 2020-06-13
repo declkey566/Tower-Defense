@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Tower_Defense
 {
@@ -12,6 +13,8 @@ namespace Tower_Defense
         //public SolidBrush basicBrush = new SolidBrush(Color.Black);
         public  int Health, Damage, Speed, x, y, sizeX, sizeY;
         string direction;
+
+        public PictureBox pb = new PictureBox();
         public Goblin(int _Health, int _Damage, int _Speed, int _x, int _y, int _sizeX, int _sizeY )
         {
             Health = _Health;
@@ -24,6 +27,11 @@ namespace Tower_Defense
 
             direction= "down";
 
+            pb.SizeMode = PictureBoxSizeMode.Zoom;
+            pb.Size = new Size(sizeX, sizeY);
+            pb.BackColor = Color.Transparent;
+            pb.Image = Properties.Resources.goblin;
+            pb.Location = new Point(x, y);
         }
         public void Move ()
         {
@@ -78,6 +86,8 @@ namespace Tower_Defense
             {
                 direction = "right";
             }
+
+            pb.Location = new Point(x, y);
 
 
         }
