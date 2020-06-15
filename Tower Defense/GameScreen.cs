@@ -29,21 +29,22 @@ namespace Tower_Defense
         int Level = 0;
         int TowerX;
         int TowerY;
-       // int counter = 0;
-        //int newX=210;
-        //int newY;
-       //int newX2 = 210;
-       // int newY2;
-       // int CastleHP = 100;
-       // int i = 0;
-       // int loop;
+
         int counter = 50;
         int shotClock = 0;
         int shotClockF = 0;
+        int MaxG;
+        int basicNum = 0;
+        int spawn = 100;
+        int Fspawn = 200;
+        int counterF = 0;
+        int FastNum;
+        int MaxF;
+        //int 
         
 
         //Goblin basicG = new Goblin(100, 50, 1, 214, 3);
-        Goblin fastG = new Goblin(50, 100, 2, 214, 3,43,61);
+       // Goblin fastG = new Goblin(50, 100, 2, 214, 2,43,61);
         public GameScreen()
         {
             InitializeComponent();
@@ -51,24 +52,50 @@ namespace Tower_Defense
         }
         public void OnStart()
         {
-            int newX2 = label2.Location.X - pictureBox20.Location.X;
-            int newY2 = label2.Location.Y - pictureBox20.Location.Y;
-            label2.Location = new Point(newX2, newY2);
-            label2.Parent = pictureBox20;
-            panel1.Visible = false;
-            button3.Visible = false;
-            label3.Text = "Basic: x" + (Form1.basic);
-            label4.Text = "Fast: x" + (Form1.fast);
-            label5.Text = "Strong: x" + (Form1.strong);
-
-            for (int i = 1; i < 19; i++)
+            if (Form1.GamePlayed == 0)
             {
-                pictureBoxes.Add((PictureBox)Controls.Find("pictureBox" + i, true)[0]);
+                int newX2 = label2.Location.X - pictureBox20.Location.X;
+                int newY2 = label2.Location.Y - pictureBox20.Location.Y;
+                label2.Location = new Point(newX2, newY2);
+                label2.Parent = pictureBox20;
+                panel1.Visible = false;
+                button3.Visible = false;
+                label3.Text = "Basic: x" + (Form1.basic);
+                label4.Text = "Fast: x" + (Form1.fast);
+                label5.Text = "Strong: x" + (Form1.strong);
+
+                for (int i = 1; i < 19; i++)
+                {
+                    pictureBoxes.Add((PictureBox)Controls.Find("pictureBox" + i, true)[0]);
+                }
+
+                for (int i = 0; i < 18; i++)
+                {
+                    pictureBoxes[i].Visible = false;
+                }
             }
-
-            for (int i = 0; i < 18; i++)
+            if (Form1.GamePlayed == 1)
             {
-                pictureBoxes[i].Visible = false;
+                pictureBox19.Visible = false;
+                button2.Visible = false;
+                pictureBox20.Visible = false;
+                panel1.Visible = false;
+                button3.Visible = true;
+                label2.Visible = false;
+                Form1.basic = Form1.basic + Form1.Oldbasic;
+                Form1.fast = Form1.fast + Form1.Oldfast;
+                Form1.strong = Form1.strong + Form1.Oldstrong;
+                label3.Text = "Basic: x" + (Form1.basic);
+                label4.Text = "Fast: x" + (Form1.fast);
+                label5.Text = "Strong: x" + (Form1.strong);
+                Form1.Oldbasic = 0;
+                Form1.Oldfast = 0;
+                Form1.Oldstrong = 0;
+
+                for (int i = 1; i < 19; i++)
+                {
+                    pictureBoxes.Add((PictureBox)Controls.Find("pictureBox" + i, true)[0]);
+                }
             }
         }
 
@@ -273,6 +300,32 @@ namespace Tower_Defense
             button3.Visible = false;
             Level = Level + 1;
             timer1.Enabled = true;
+            if (Level == 1)
+            {
+                MaxG = 5;
+                MaxF = 1;
+                spawn = 100;
+                Fspawn = 200;
+            }
+            if (Level == 2)
+            {
+                MaxG = 10;
+                MaxF = 3;
+                spawn = 80;
+                Fspawn = 180;
+            }
+            if (Level == 15)
+            {
+                MaxG = 15;
+                MaxF = 5;
+                spawn = 60;
+            }
+            if (Level == 20)
+            {
+                MaxG = 10;
+                MaxF = 10;
+                spawn = 50;
+            }
             //Run Gameplay, set goblins and have them move in, set game level
         }
 
@@ -281,17 +334,40 @@ namespace Tower_Defense
             shotClock++;
             shotClockF++;
             counter++;
-            label7.Text = Convert.ToString(shotClock);
-            if (counter == 100)
+            counterF++;
+           
+            label9.Text = Convert.ToString(basicNum);
+            if (counter == spawn)
             {
-                Goblin basicG = new Goblin(50, 50, 1, 214, 3,43,61);
-                basicGList.Add(basicG);
-                this.Controls.Add(basicG.pb);
-                counter = 0;
+                if (basicNum < MaxG)
+                {
+
+                    Goblin basicG = new Goblin(50, 50, 1, 214, 2, 43, 61);
+                    basicGList.Add(basicG);
+                    this.Controls.Add(basicG.pb);
+                    counter = 0;
+                    basicNum = basicNum + 1;
+                }
+            }
+            if (counterF == Fspawn)
+            {
+                if (FastNum < MaxF)
+                {
+
+                    Goblin fastG = new Goblin(50, 50, 2, 214, 2, 43, 61);
+                    fastGList.Add(fastG);
+                    this.Controls.Add(fastG.pb);
+                    counter = 0;
+                    FastNum = FastNum + 1;
+                }
             }
             foreach (Goblin basicG in basicGList)
             {
                 basicG.Move();
+            }
+            foreach (Goblin fastG in fastGList)
+            {
+                fastG.Move();
             }
             foreach (Tower basic in basicList)
             {
@@ -311,19 +387,21 @@ namespace Tower_Defense
                     shotClockF = 0;
                 }
             }
-              //  for (int i=0;i<basicGList.Count-1; i++)
-              //  {
-               //     if (basicGList[i].Health <= 0)
-               //     {
-               //     basicGList[i].pb.Visible = false;
-                //    Form1.score = Form1.score + 50;
-                //    Form1.coins = Form1.coins + 25;
-                 //   basicGList.RemoveAt[i];
-               //     }   
-             //   }
-            label7.Text = ("Score:" + Convert.ToString(Form1.score));
-          // label7.Text= Convert.ToString(shotClockF);
 
+            label7.Text = ("Score:" + Convert.ToString(Form1.score));
+            label8.Text = ("Coins:" + Convert.ToString(Form1.coins));
+
+
+          if (basicGList.Count == 0 && fastGList.Count ==0 && strongGList.Count==0 && counter>100)
+            {
+                timer1.Enabled = false;
+                Form1.GamePlayed = 1;
+                basicNum = 0;
+                Form f = this.FindForm();
+                f.Controls.Remove(this);
+                ShopScreen ss = new ShopScreen();
+                f.Controls.Add(ss);
+            }
             Refresh();
         }
         private void Shoot()
@@ -342,6 +420,18 @@ namespace Tower_Defense
                             Form1.score = Form1.score + 50;
                             Form1.coins = Form1.coins + 25;
                             basicGList.RemoveAt(j);
+                            foreach (Tower fast in fastList)
+                            {
+                                Form1.Oldfast = Form1.Oldfast + 1;
+                            }
+                            foreach (Tower basic in basicList)
+                            {
+                                Form1.Oldbasic = Form1.Oldbasic + 1;
+                            }
+                            foreach (Tower strong in strongList)
+                            {
+                                Form1.Oldstrong = Form1.Oldstrong + 1;
+                            }
                         }
                     }
                 }

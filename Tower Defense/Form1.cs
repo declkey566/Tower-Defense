@@ -19,6 +19,10 @@ namespace Tower_Defense
         public static int fast = 0;
         public static int strong = 0;
         public static int slot;
+        public static int GamePlayed = 0;
+        public static int Oldbasic = 0;
+        public static int Oldfast = 0;
+        public static int Oldstrong = 0;
         public Form1()
         {
             InitializeComponent();
