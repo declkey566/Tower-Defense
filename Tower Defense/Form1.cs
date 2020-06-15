@@ -13,7 +13,7 @@ namespace Tower_Defense
     public partial class Form1 : Form
     {
         public static string userName;
-        //int score;
+        public static int score =0;
         public  static int coins=100;
         public static int basic = 0;
         public static int fast = 0;

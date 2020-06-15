@@ -39,6 +39,7 @@ namespace Tower_Defense
        // int loop;
         int counter = 50;
         int shotClock = 0;
+        int shotClockF = 0;
         
 
         //Goblin basicG = new Goblin(100, 50, 1, 214, 3);
@@ -278,6 +279,7 @@ namespace Tower_Defense
         private void timer1_Tick(object sender, EventArgs e)
         {
             shotClock++;
+            shotClockF++;
             counter++;
             label7.Text = Convert.ToString(shotClock);
             if (counter == 100)
@@ -299,15 +301,28 @@ namespace Tower_Defense
                     shotClock = 0;
                     
                 }
-            }        
-                for (int i=0;i<basicGList.Count-1; i++)
+                
+            }   
+            foreach (Tower fast in fastList)
+            {
+                if (shotClockF == 15)
                 {
-                    if (basicGList[i].Health <= 0)
-                    {
-                    basicGList[i].pb.Visible = false;
-                    }   
+                    ShootF();
+                    shotClockF = 0;
                 }
-
+            }
+              //  for (int i=0;i<basicGList.Count-1; i++)
+              //  {
+               //     if (basicGList[i].Health <= 0)
+               //     {
+               //     basicGList[i].pb.Visible = false;
+                //    Form1.score = Form1.score + 50;
+                //    Form1.coins = Form1.coins + 25;
+                 //   basicGList.RemoveAt[i];
+               //     }   
+             //   }
+            label7.Text = ("Score:" + Convert.ToString(Form1.score));
+          // label7.Text= Convert.ToString(shotClockF);
 
             Refresh();
         }
@@ -317,10 +332,39 @@ namespace Tower_Defense
             {
                 for (int j = 0; j < basicGList.Count ; j++)
                 {
-                    if (basicList[i].x - basicGList[j].x < 100 || basicList[i].y - basicGList[j].y < 100)
+                    if (basicList[i].x - basicGList[j].x < 50 && basicList[i].y - basicGList[j].y < 50)
                     {
                         basicGList[j].Health = basicGList[j].Health - basicList[i].Damage;
                         label6.Text = Convert.ToString(basicGList[j].Health);
+                        if (basicGList[j].Health <= 0)
+                        {
+                            basicGList[j].pb.Visible = false;
+                            Form1.score = Form1.score + 50;
+                            Form1.coins = Form1.coins + 25;
+                            basicGList.RemoveAt(j);
+                        }
+                    }
+                }
+            }
+            
+        }
+        private void ShootF()
+        {
+            for (int i = 0; i < fastList.Count; i++)
+            {
+                for (int j = 0; j < basicGList.Count; j++)
+                {
+                    if (fastList[i].x - basicGList[j].x < 50 && fastList[i].y - basicGList[j].y < 50) //TRY TO FIND A BETTER METHOD TO ATTACK CLOSEST GOBLIN
+                    {
+                        basicGList[j].Health = basicGList[j].Health - fastList[i].Damage;
+                        label6.Text = Convert.ToString(basicGList[j].Health);
+                        if (basicGList[j].Health <= 0)
+                        {
+                            basicGList[j].pb.Visible = false;
+                            Form1.score = Form1.score + 50;
+                            Form1.coins = Form1.coins + 25;
+                             basicGList.RemoveAt(j);
+                        }
                     }
                 }
             }

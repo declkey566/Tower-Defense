@@ -42,15 +42,6 @@ namespace Tower_Defense
             pb.Location = new Point(x, y);
         }
 
-        //public void Shoot()
-      //  {
-       //     if (Tower.x -Goblin.x <100 && Tower.y -Goblin.y<100)
-        //    {
-         //       Goblin.Health = Goblin.Health - Damage;
-                
-         //   }
-      //  }
-
     }
     
 }
