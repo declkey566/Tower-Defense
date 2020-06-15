@@ -11,7 +11,8 @@ namespace Tower_Defense
     public class Goblin
     {
         //public SolidBrush basicBrush = new SolidBrush(Color.Black);
-        public  int Health, Damage, Speed, x, y, sizeX, sizeY;
+        public int Health,Damage, Speed, x, y, sizeX, sizeY;
+      //  int Health;
         string direction;
 
         public PictureBox pb = new PictureBox();
@@ -33,19 +34,19 @@ namespace Tower_Defense
             pb.Image = Properties.Resources.goblin;
             pb.Location = new Point(x, y);
         }
-        public void Move ()
+        public void Move()
         {
             if (direction == "left")
             {
                 x -= Speed;
             }
-            if (direction=="right")
+            if (direction == "right")
             {
-                x +=Speed;
+                x += Speed;
             }
             if (direction == "up")
             {
-                y -=Speed;
+                y -= Speed;
             }
             if (direction == "down")
             {
@@ -91,5 +92,12 @@ namespace Tower_Defense
 
 
         }
+        //public void CheckDeath()
+       // {
+          //  if(Goblin.Health ==0)
+           // {
+           //     pb.Visible = false;
+           // }
+      //  }
     }
 }

@@ -27,6 +27,8 @@ namespace Tower_Defense
 
         SolidBrush basicGBrush = new SolidBrush(Color.Green);
         int Level = 0;
+        int TowerX;
+        int TowerY;
        // int counter = 0;
         //int newX=210;
         //int newY;
@@ -36,6 +38,7 @@ namespace Tower_Defense
        // int i = 0;
        // int loop;
         int counter = 50;
+        int shotClock = 0;
         
 
         //Goblin basicG = new Goblin(100, 50, 1, 214, 3);
@@ -192,6 +195,10 @@ namespace Tower_Defense
 
         private void pictureBox22_Click(object sender, EventArgs e)
         {
+            if (Form1.basic == 0)
+            {
+                MessageBox.Show("You do not have any basic towers, please try something else.");
+            }
             if (Form1.basic > 0)
             {
                 pictureBoxes[Form1.slot].Image = Tower_Defense.Properties.Resources.basic;
@@ -201,37 +208,43 @@ namespace Tower_Defense
                 label3.Text = "Basic: x" + (Form1.basic);
                 int Damage = 10;
                 int ShotSpeed = 10;
-                Tower basic = new Tower(ShotSpeed, Damage);
+                TowerX = pictureBoxes[Form1.slot].Location.X;
+                TowerY = pictureBoxes[Form1.slot].Location.Y;
+                Tower basic = new Tower(ShotSpeed, Damage,TowerX,TowerY, pictureBoxes[Form1.slot].Width, pictureBoxes[Form1.slot].Height, "basic");
                 basicList.Add(basic);
             }
-            if (Form1.basic == 0)
-            {
-                MessageBox.Show("You do not have any basic towers, please try something else.");
-            }
+      
         }
 
         private void pictureBox23_Click(object sender, EventArgs e)
         {
+            if (Form1.fast == 0)
+            {
+                MessageBox.Show("You do not have any fast towers, please try something else.");
+            }
             if (Form1.fast > 0)
             {
-                pictureBoxes[Form1.slot].Image = Tower_Defense.Properties.Resources.fast;
+               pictureBoxes[Form1.slot].Image = Tower_Defense.Properties.Resources.fast;
                 pictureBoxes[Form1.slot].Width = 81;
                 panel1.Visible = false;
                 Form1.fast = Form1.fast - 1;
                 label4.Text = "Fast: x" + (Form1.fast);
                 int Damage = 10;
                 int ShotSpeed = 15;
-                Tower fast = new Tower(ShotSpeed, Damage);
-                basicList.Add(fast);
+                TowerX = pictureBoxes[Form1.slot].Location.X;
+                TowerY = pictureBoxes[Form1.slot].Location.Y;
+                Tower fast = new Tower(ShotSpeed, Damage, TowerX,TowerY, pictureBoxes[Form1.slot].Width, pictureBoxes[Form1.slot].Height, "fast");
+                fastList.Add(fast);
             }
-            else if (Form1.fast == 0)
-            {
-                MessageBox.Show("You do not have any fast towers, please try something else.");
-            }
+            
         }
 
         private void pictureBox21_Click(object sender, EventArgs e)
         {
+            if (Form1.strong == 0)
+            {
+                MessageBox.Show("You do not have any strong towers, please try something else.");
+            }
             if (Form1.strong > 0)
             {
                 pictureBoxes[Form1.slot].Image = Tower_Defense.Properties.Resources.strong;
@@ -241,13 +254,12 @@ namespace Tower_Defense
                 label5.Text = "Strong: x" + (Form1.strong);
                 int Damage = 20;
                 int ShotSpeed = 10;
-                Tower strong = new Tower(ShotSpeed, Damage);
-                basicList.Add(strong);
+                TowerX = pictureBoxes[Form1.slot].Location.X;
+                TowerY = pictureBoxes[Form1.slot].Location.Y;
+                Tower strong = new Tower(ShotSpeed, Damage,TowerX,TowerY,pictureBoxes[Form1.slot].Width, pictureBoxes[Form1.slot].Height, "strong");
+                strongList.Add(strong);
             }
-            if (Form1.basic == 0)
-            {
-                MessageBox.Show("You do not have any strong towers, please try something else.");
-            }
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -265,10 +277,12 @@ namespace Tower_Defense
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            shotClock++;
             counter++;
+            label7.Text = Convert.ToString(shotClock);
             if (counter == 100)
             {
-                Goblin basicG = new Goblin(100, 50, 1, 214, 3,43,61);
+                Goblin basicG = new Goblin(50, 50, 1, 214, 3,43,61);
                 basicGList.Add(basicG);
                 this.Controls.Add(basicG.pb);
                 counter = 0;
@@ -277,8 +291,39 @@ namespace Tower_Defense
             {
                 basicG.Move();
             }
+            foreach (Tower basic in basicList)
+            {
+                if (shotClock == 25)
+                {
+                    Shoot();
+                    shotClock = 0;
+                    
+                }
+            }        
+                for (int i=0;i<basicGList.Count-1; i++)
+                {
+                    if (basicGList[i].Health <= 0)
+                    {
+                    basicGList[i].pb.Visible = false;
+                    }   
+                }
+
+
             Refresh();
         }
-
+        private void Shoot()
+        {
+            for (int i =0; i< basicList.Count;i++)
+            {
+                for (int j = 0; j < basicGList.Count ; j++)
+                {
+                    if (basicList[i].x - basicGList[j].x < 100 || basicList[i].y - basicGList[j].y < 100)
+                    {
+                        basicGList[j].Health = basicGList[j].Health - basicList[i].Damage;
+                        label6.Text = Convert.ToString(basicGList[j].Health);
+                    }
+                }
+            }
+        }
     }
 }
