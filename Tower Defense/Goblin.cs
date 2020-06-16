@@ -14,9 +14,10 @@ namespace Tower_Defense
         public int Health,Damage, Speed, x, y, sizeX, sizeY;
       //  int Health;
         string direction;
+        string Type;
 
         public PictureBox pb = new PictureBox();
-        public Goblin(int _Health, int _Damage, int _Speed, int _x, int _y, int _sizeX, int _sizeY )
+        public Goblin(int _Health, int _Damage, int _Speed, int _x, int _y, int _sizeX, int _sizeY, string _Type )
         {
             Health = _Health;
             Damage = _Damage;
@@ -25,13 +26,27 @@ namespace Tower_Defense
             y = _y;
             sizeX = _sizeX;
             sizeY = _sizeY;
+            Type = _Type;
 
             direction= "down";
+
+            if (Type == "boss")
+            {
+                pb.Image = Properties.Resources.ogre;
+            }
+            if (Type == "basic")
+            {
+                pb.Image = Properties.Resources.goblin;
+            }
+            if (Type == "fast")
+            {
+                pb.Image = Properties.Resources.goblin;
+            }
 
             pb.SizeMode = PictureBoxSizeMode.Zoom;
             pb.Size = new Size(sizeX, sizeY);
             pb.BackColor = Color.Transparent;
-            pb.Image = Properties.Resources.goblin;
+            //pb.Image = Properties.Resources.goblin;
             pb.Location = new Point(x, y);
         }
         public void Move()
@@ -63,27 +78,27 @@ namespace Tower_Defense
                 direction = "down";
             }
 
-            if (x == 90 && y == 440)
+            if (x == 90 && y == 442)
             {
                 direction = "right";
             }
 
-            if (x == 385 && y == 440)
+            if (x == 386 && y == 442)
             {
                 direction = "up";
             }
 
-            if (x == 385 && y == 75)
+            if (x == 386 && y == 78)
             {
                 direction = "right";
             }
 
-            if (x == 590 && y == 75)
+            if (x == 590 && y == 78)
             {
                 direction = "down";
             }
 
-            if (x == 590 && y == 440)
+            if (x == 590 && y == 442)
             {
                 direction = "right";
             }
@@ -92,12 +107,5 @@ namespace Tower_Defense
 
 
         }
-        //public void CheckDeath()
-       // {
-          //  if(Goblin.Health ==0)
-           // {
-           //     pb.Visible = false;
-           // }
-      //  }
     }
 }

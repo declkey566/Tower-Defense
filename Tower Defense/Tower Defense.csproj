@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EndScreenB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EndScreenB.Designer.cs">
+      <DependentUpon>EndScreenB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Tower.cs" />
+    <EmbeddedResource Include="EndScreenB.resx">
+      <DependentUpon>EndScreenB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,6 +171,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ogre.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hole in wall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scores.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
