@@ -568,6 +568,7 @@ namespace Tower_Defense
                 //Form1.Names = File.ReadAllLines("Scores.txt").ToList();
                 // File.WriteAllLines("Scores.txt", Form1.Scores);
                 Form1.Scores.Add(Form1.userName +": "+ Convert.ToString(Form1.score));
+
                 foreach (string score in Form1.Scores)
                 {
                     File.WriteAllLines("Scores.txt", Form1.Scores);

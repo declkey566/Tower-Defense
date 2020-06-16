@@ -21,12 +21,15 @@ namespace Tower_Defense
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            //nameBox.Text = Form1.userName;
-            Form1.userName = nameBox.Text;
-            Form f = this.FindForm();
-            f.Controls.Remove(this);
-            ShopScreen ss = new ShopScreen();
-            f.Controls.Add(ss);
+            
+            if (nameBox.Text != "")
+            {
+                Form1.userName = nameBox.Text;
+                Form f = this.FindForm();
+                f.Controls.Remove(this);
+                ShopScreen ss = new ShopScreen();
+                f.Controls.Add(ss);
+            }
         }
     }
 }
