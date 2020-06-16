@@ -26,10 +26,20 @@ namespace Tower_Defense
         List<Goblin> bossGList = new List<Goblin>();
         List<int> Scores = new List<int>();
 
+
+        static int basicH = 50;
+        static int fastH = 70;
+        static int bossH = 200;
+
+        static int basicD = 50;
+        static int fastD = 50;
+        static int bossD = 150;
+
+    
+
         List<PictureBox> GoblinBoxes = new List<PictureBox>();
 
         SolidBrush basicGBrush = new SolidBrush(Color.Green);
-        int Level = 0;
         int TowerX;
         int TowerY;
         int HP = 100;
@@ -37,25 +47,19 @@ namespace Tower_Defense
         int counter = 50;
         int shotClock = 0;
         int shotClockF = 0;
+        int shotClockS = 0;
         int MaxG;
         int basicNum = 0;
         int spawn = 100;
         int Fspawn = 200;
         int counterF = 0;
-        int FastNum;
+        int FastNum=0;
         int MaxF;
 
         int spawnS ;
         int counterS = 0;
-        int StrongNum;
+        int StrongNum=0;
         int MaxS;
-
-        
-        //int 
-        
-
-        //Goblin basicG = new Goblin(100, 50, 1, 214, 3);
-       // Goblin fastG = new Goblin(50, 100, 2, 214, 2,43,61);
         public GameScreen()
         {
             InitializeComponent();
@@ -309,36 +313,57 @@ namespace Tower_Defense
         private void button3_Click(object sender, EventArgs e) //Defend button is pressed
         {
             button3.Visible = false;
-            Level = Level + 1;
+            Form1.Level = Form1.Level + 1;
             timer1.Enabled = true;
-            if (Level == 1)
+            if (Form1.Level == 1)
             {
                 MaxG = 5;
                 MaxF = 1;
                 MaxS = 0;
                 spawn = 100;
                 Fspawn = 200;
-            }
-            if (Level == 2)
-            {
-                MaxG = 5;
-                MaxF = 3;
-                MaxS = 1;
-                spawn = 80;
-                Fspawn = 180;
                 spawnS = 300;
             }
-            if (Level == 15)
+            if (Form1.Level == 2)
             {
+                basicH = basicH + 20;
+                fastH = fastH + 20;
+                fastD = fastD + 10;
+                basicD = basicD + 10;
+                MaxG = 5;
+                MaxF = 5;
+                MaxS = 0;
+                spawn = 80;
+                Fspawn = 150;
+                spawnS = 300;
+            }
+            if (Form1.Level == 3)
+            {
+                basicH = basicH + 30;
+                fastH = fastH + 30;
+                fastD = fastD + 10;
+                basicD = basicD + 10;
                 MaxG = 15;
                 MaxF = 5;
+                MaxS = 1;
                 spawn = 60;
+                Fspawn = 120;
+                spawnS = 300;
             }
-            if (Level == 20)
+            if (Form1.Level == 4)
             {
-                MaxG = 10;
+                basicH = basicH + 50;
+                fastH = fastH + 50;
+                fastD = fastD + 20;
+                basicD = basicD + 20;
+                bossH = bossH + 100;
+                bossD = bossD + 20;
+                MaxG = 10;                
                 MaxF = 10;
+                MaxS = 2;
                 spawn = 50;
+                Fspawn = 100;
+                spawnS = 250;
             }
             //Run Gameplay, set goblins and have them move in, set game level
         }
@@ -347,17 +372,18 @@ namespace Tower_Defense
         {
             shotClock++;
             shotClockF++;
+            shotClockS++;
             counter++;
             counterF++;
             counterS++;
-            label10.Text = (Form1.userName);
-           // label9.Text = Convert.ToString(basicNum);
+            
+            label9.Text = Convert.ToString(Form1.Level);
+            label10.Text = Convert.ToString(MaxS);
             if (counter == spawn)
             {
                 if (basicNum < MaxG)
                 {
-
-                    Goblin basicG = new Goblin(50, 50, 1, 214, 2, 43, 61, "basic");
+                    Goblin basicG = new Goblin(basicH, basicD, 1, 214, 2, 43, 61, "basic");
                     basicGList.Add(basicG);
                     this.Controls.Add(basicG.pb);
                     counter = 0;
@@ -368,8 +394,7 @@ namespace Tower_Defense
             {
                 if (FastNum < MaxF)
                 {
-
-                    Goblin fastG = new Goblin(70, 500, 4, 214, 2, 43, 61, "fast");
+                    Goblin fastG = new Goblin(fastH, fastD, 4, 214, 2, 43, 61, "fast");
                     fastGList.Add(fastG);
                     this.Controls.Add(fastG.pb);
                     counter = 0;
@@ -380,8 +405,7 @@ namespace Tower_Defense
             {
                 if (StrongNum < MaxS)
                 {
-
-                    Goblin strongG = new Goblin(200, 150, 2, 214, 2, 43, 61, "boss");
+                    Goblin strongG = new Goblin(bossH, bossD, 2, 214, 2, 43, 61, "boss");
                     strongGList.Add(strongG);
                     this.Controls.Add(strongG.pb);
                     counterS = 0;
@@ -419,6 +443,14 @@ namespace Tower_Defense
                     shotClockF = 0;
                 }
             }
+            foreach (Tower strong in strongList)
+            {
+                if (shotClockS == 30)
+                {
+                    ShootS();
+                    shotClockS = 0;
+                }
+            }
 
             label7.Text = ("Score:" + Convert.ToString(Form1.score));
             label8.Text = ("Coins:" + Convert.ToString(Form1.coins));
@@ -430,6 +462,8 @@ namespace Tower_Defense
                 timer1.Enabled = false;
                 Form1.GamePlayed = 1;
                 basicNum = 0;
+                FastNum = 0;
+                StrongNum = 0;
                 foreach (Tower fast in fastList)
                 {
                     Form1.Oldfast = Form1.Oldfast + 1;
@@ -456,10 +490,12 @@ namespace Tower_Defense
             {
                 for (int j = 0; j < basicGList.Count ; j++)
                 {
-                    if (basicList[i].x - basicGList[j].x < 50 && basicList[i].y - basicGList[j].y < 50)
+                    var temp1 = Math.Pow((basicList[i].x - basicGList[j].x), 2);
+                    var temp2 = Math.Pow((basicList[i].y - basicGList[j].y), 2);
+                    var result = Math.Sqrt(temp1 + temp2);
+                    if (result < 150)
                     {
                         basicGList[j].Health = basicGList[j].Health - basicList[i].Damage;
-                       // label6.Text = Convert.ToString(basicGList[j].Health);
                         if (basicGList[j].Health <= 0)
                         {
                             basicGList[j].pb.Visible = false;
@@ -473,10 +509,12 @@ namespace Tower_Defense
                 }
                 for (int j = 0; j < fastGList.Count; j++)
                 {
-                    if (basicList[i].x - fastGList[j].x < 50 && basicList[i].y - fastGList[j].y < 50)
+                    var temp1 = Math.Pow((basicList[i].x - fastGList[j].x), 2);
+                    var temp2 = Math.Pow((basicList[i].y - fastGList[j].y), 2);
+                    var result = Math.Sqrt(temp1 + temp2);
+                    if (result< 150)
                     {
                         fastGList[j].Health = fastGList[j].Health - basicList[i].Damage;
-                        label6.Text = Convert.ToString(fastGList[j].Health);
                         if (fastGList[j].Health <= 0)
                         {
                             fastGList[j].pb.Visible = false;
@@ -487,16 +525,41 @@ namespace Tower_Defense
                         }
                     }
                 }
+                for (int j = 0; j < strongGList.Count; j++)
+                {
+                    var temp1 = Math.Pow((basicList[i].x - strongGList[j].x), 2);
+                    var temp2 = Math.Pow((basicList[i].y - strongGList[j].y), 2);
+                    var result = Math.Sqrt(temp1 + temp2);
+                    if (result < 150)
+                    {
+                        strongGList[j].Health = strongGList[j].Health - basicList[i].Damage;
+                       // label9.Text = Convert.ToString(strongGList[j].Health);
+                        if (strongGList[j].Health <= 0)
+                        {
+                            strongGList[j].pb.Visible = false;
+                            Form1.score = Form1.score + 200;
+                            Form1.coins = Form1.coins + 100;
+                            strongGList.RemoveAt(j);
+
+                        }
+                    }
+                }
             }
             
         }
+       
         private void ShootF()
         {
             for (int i = 0; i < fastList.Count; i++)
             {
                 for (int j = 0; j < basicGList.Count; j++)
                 {
-                    if (fastList[i].x - basicGList[j].x < 50 && fastList[i].y - basicGList[j].y < 50) //TRY TO FIND A BETTER METHOD TO ATTACK CLOSEST GOBLIN
+                    var temp1 = Math.Pow((fastList[i].x - basicGList[j].x), 2);
+                    var temp2 = Math.Pow((fastList[i].y - basicGList[j].y), 2);
+                    var result = Math.Sqrt(temp1 + temp2);
+                    label10.Text = Convert.ToString(MaxS);
+                   // label9.Text = ()
+                    if (result <150)
                     {
                         basicGList[j].Health = basicGList[j].Health - fastList[i].Damage;
                        // label6.Text = Convert.ToString(basicGList[j].Health);
@@ -508,19 +571,104 @@ namespace Tower_Defense
                              basicGList.RemoveAt(j);
                         }
                     }
-                }
+                }               
                 for (int j = 0; j < fastGList.Count; j++)
                 {
-                    if (fastList[i].x - fastGList[j].x < 50 && fastList[i].y - fastGList[j].y < 50)
+                    var temp1 = Math.Pow((fastList[i].x - fastGList[j].x), 2);
+                    var temp2 = Math.Pow((fastList[i].y - fastGList[j].y), 2);
+                    var result = Math.Sqrt(temp1 + temp2);
+                    if (result < 150)
                     {
+                        
                         fastGList[j].Health = fastGList[j].Health - fastList[i].Damage;
-                        label6.Text = Convert.ToString(fastGList[j].Health);
+                       // label9.Text = Convert.ToString(fastGList[j].Health);
                         if (fastGList[j].Health <= 0)
                         {
                             fastGList[j].pb.Visible = false;
                             Form1.score = Form1.score + 75;
                             Form1.coins = Form1.coins + 50;
                             fastGList.RemoveAt(j);
+
+                        }
+                    }
+                }
+                for (int j = 0; j < strongGList.Count; j++)
+                {
+                    var temp1 = Math.Pow((fastList[i].x - strongGList[j].x), 2);
+                    var temp2 = Math.Pow((fastList[i].y - strongGList[j].y), 2);
+                    var result = Math.Sqrt(temp1 + temp2);
+                    if (result < 150)
+                    {
+
+                        strongGList[j].Health = strongGList[j].Health - fastList[i].Damage;
+                       // label9.Text = Convert.ToString(strongGList[j].Health);
+                        if (strongGList[j].Health <= 0)
+                        {
+                            strongGList[j].pb.Visible = false;
+                            Form1.score = Form1.score + 200;
+                            Form1.coins = Form1.coins + 100;
+                            strongGList.RemoveAt(j);
+
+                        }
+                    }
+                }
+            }
+        }
+        private void ShootS()
+        {
+            for (int i = 0; i < strongList.Count; i++)
+            {
+                for (int j = 0; j < basicGList.Count; j++)
+                {
+                    var temp1 = Math.Pow((strongList[i].x - basicGList[j].x), 2);
+                    var temp2 = Math.Pow((strongList[i].y - basicGList[j].y), 2);
+                    var result = Math.Sqrt(temp1 + temp2);
+                    if (result < 150)
+                    {
+                        basicGList[j].Health = basicGList[j].Health - strongList[i].Damage;
+                        if (basicGList[j].Health <= 0)
+                        {
+                            basicGList[j].pb.Visible = false;
+                            Form1.score = Form1.score + 50;
+                            Form1.coins = Form1.coins + 25;
+                            basicGList.RemoveAt(j);
+                        }
+                    }
+                }
+                for (int j = 0; j < fastGList.Count; j++)
+                {
+                    var temp1 = Math.Pow((strongList[i].x - fastGList[j].x), 2);
+                    var temp2 = Math.Pow((strongList[i].y - fastGList[j].y), 2);
+                    var result = Math.Sqrt(temp1 + temp2);
+                    if (result < 150)
+                    {
+
+                        fastGList[j].Health = fastGList[j].Health - strongList[i].Damage;
+                        if (fastGList[j].Health <= 0)
+                        {
+                            fastGList[j].pb.Visible = false;
+                            Form1.score = Form1.score + 75;
+                            Form1.coins = Form1.coins + 50;
+                            fastGList.RemoveAt(j);
+
+                        }
+                    }
+                }
+                for (int j = 0; j < strongGList.Count; j++)
+                {
+                    var temp1 = Math.Pow((strongList[i].x - strongGList[j].x), 2);
+                    var temp2 = Math.Pow((strongList[i].y - strongGList[j].y), 2);
+                    var result = Math.Sqrt(temp1 + temp2);
+                    if (result < 150)
+                    {
+
+                        strongGList[j].Health = strongGList[j].Health - strongList[i].Damage;
+                        if (strongGList[j].Health <= 0)
+                        {
+                            strongGList[j].pb.Visible = false;
+                            Form1.score = Form1.score + 200;
+                            Form1.coins = Form1.coins + 100;
+                            strongGList.RemoveAt(j);
 
                         }
                     }
@@ -562,11 +710,8 @@ namespace Tower_Defense
 
             if (HP<=0)
             {
-                //string ScoreTxt = Convert.ToString(Form1.score);
                 timer1.Enabled = false;
                 Form1.Scores = File.ReadAllLines("Scores.txt").ToList();
-                //Form1.Names = File.ReadAllLines("Scores.txt").ToList();
-                // File.WriteAllLines("Scores.txt", Form1.Scores);
                 Form1.Scores.Add(Form1.userName +": "+ Convert.ToString(Form1.score));
 
                 foreach (string score in Form1.Scores)

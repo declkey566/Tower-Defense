@@ -19,7 +19,7 @@ namespace Tower_Defense
             foreach(string score in Form1.Scores)
            {
                 label4.Text += (score +"\n");
-                Form1.Scores.Sort();
+               
            }
         }
     }
