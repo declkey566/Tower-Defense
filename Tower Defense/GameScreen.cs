@@ -24,7 +24,7 @@ namespace Tower_Defense
         List<Goblin> fastGList = new List<Goblin>();
         List<Goblin> strongGList = new List<Goblin>();
         List<Goblin> bossGList = new List<Goblin>();
-        List<string> Scores = new List<string>();
+        List<int> Scores = new List<int>();
 
         List<PictureBox> GoblinBoxes = new List<PictureBox>();
 
@@ -350,7 +350,7 @@ namespace Tower_Defense
             counter++;
             counterF++;
             counterS++;
-            label10.Text = Convert.ToString(counterS);
+            label10.Text = (Form1.userName);
            // label9.Text = Convert.ToString(basicNum);
             if (counter == spawn)
             {
@@ -562,11 +562,17 @@ namespace Tower_Defense
 
             if (HP<=0)
             {
-               // string ScoreTxt = Convert.ToString(Form1.score);
+                //string ScoreTxt = Convert.ToString(Form1.score);
                 timer1.Enabled = false;
-                //Form1.Scores = File.ReadAllLines("Scores.txt").ToList();
-                File.WriteAllLines("Scores.txt", Form1.Scores);
-                //Application.Exit();
+                Form1.Scores = File.ReadAllLines("Scores.txt").ToList();
+                //Form1.Names = File.ReadAllLines("Scores.txt").ToList();
+                // File.WriteAllLines("Scores.txt", Form1.Scores);
+                Form1.Scores.Add(Form1.userName +": "+ Convert.ToString(Form1.score));
+                foreach (string score in Form1.Scores)
+                {
+                    File.WriteAllLines("Scores.txt", Form1.Scores);
+                }
+
                 Form f = this.FindForm();
                 f.Controls.Remove(this);
                 EndScreenB esb = new EndScreenB();
@@ -575,7 +581,7 @@ namespace Tower_Defense
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            if (Form1.coins > 50)
+            if (Form1.coins >= 50 && HP<100)
             {
                 Form1.coins = Form1.coins - 50;
                 HP = HP + 20;

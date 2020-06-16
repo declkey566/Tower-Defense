@@ -17,9 +17,9 @@ namespace Tower_Defense
             InitializeComponent();
             label2.Text = ("Final Score: " + Convert.ToString(Form1.score));
             foreach(string score in Form1.Scores)
-            {
-                textBox1.Text += (Form1.userName)+": "+  score + "\n";
-            }
+           {
+                label4.Text += (score +"\n");
+           }
         }
     }
 }

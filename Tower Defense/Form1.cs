@@ -24,6 +24,7 @@ namespace Tower_Defense
         public static int Oldfast = 0;
         public static int Oldstrong = 0;
        public static List<string> Scores = new List<string>();
+        //public static List<string> Names = new List<string>();
         public Form1()
         {
             InitializeComponent();
