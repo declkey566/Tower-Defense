@@ -565,7 +565,7 @@ namespace Tower_Defense
                // string ScoreTxt = Convert.ToString(Form1.score);
                 timer1.Enabled = false;
                 //Form1.Scores = File.ReadAllLines("Scores.txt").ToList();
-                File.WriteAllLines("Scores.txt", Form1.Scores);
+                File.WriteAllLines("Scores.txt", Form1.Scores):
                 //Application.Exit();
                 Form f = this.FindForm();
                 f.Controls.Remove(this);
