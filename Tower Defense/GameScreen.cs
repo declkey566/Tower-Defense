@@ -26,6 +26,10 @@ namespace Tower_Defense
         List<Goblin> bossGList = new List<Goblin>();
         List<int> Scores = new List<int>();
 
+        List<Bullet> bullets = new List<Bullet>();
+        List<Bullet> bulletsF = new List<Bullet>();
+       int Distance;
+
 
         static int basicH = 50;
         static int fastH = 70;
@@ -377,8 +381,8 @@ namespace Tower_Defense
             counterF++;
             counterS++;
             
-            label9.Text = Convert.ToString(Form1.Level);
-            label10.Text = Convert.ToString(MaxS);
+           /// label9.Text = Convert.ToString(Distance);
+           // label10.Text = Convert.ToString(Distance);
             if (counter == spawn)
             {
                 if (basicNum < MaxG)
@@ -427,13 +431,14 @@ namespace Tower_Defense
             }
             foreach (Tower basic in basicList)
             {
-                if (shotClock == 25)
+
+                 if (shotClock == 25)
                 {
                     Shoot();
-                    shotClock = 0;
-                    
-                }
-                
+                   shotClock = 0;
+
+                 }
+
             }   
             foreach (Tower fast in fastList)
             {
@@ -451,6 +456,333 @@ namespace Tower_Defense
                     shotClockS = 0;
                 }
             }
+            BasicBullets();
+            //private void BasicBullets()
+            //{
+            //    for (int i = 0; i < basicList.Count; i++)
+            //    {
+            //        for (int j = 0; j < basicGList.Count; j++)
+            //        {
+
+            //            Rectangle GoblinRec = new Rectangle(basicGList[j].x, basicGList[j].y, basicGList[j].sizeX, basicGList[j].sizeY);
+
+            //            for (int k = 0; k < bullets.Count; k++)
+            //            {
+            //                int previousX = bullets[k].x;
+            //                if (basicGList[j].x > bullets[k].x)
+            //                {
+            //                    bullets[k].BMove("Right");
+            //                }
+            //                if (basicGList[j].x < bullets[k].x)
+            //                {
+            //                    bullets[k].BMove("Left");
+            //                }
+            //                if (basicGList[j].y > bullets[k].y)
+            //                {
+            //                    bullets[k].BMove("Up");
+            //                }
+            //                if (basicGList[j].y < bullets[k].y)
+            //                {
+            //                    bullets[k].BMove("Down");
+            //                }
+            //                if (bullets[k].x == previousX)
+            //                {
+            //                    bullets.RemoveAt(k);
+            //                }
+            //            }
+            //            foreach (Bullet b in bullets)
+            //            {
+            //                Rectangle bulletRec = new Rectangle(b.x, b.y, b.size, b.size);
+            //                if (bulletRec.IntersectsWith(GoblinRec))
+            //                {
+            //                    int index = bullets.IndexOf(b);
+            //                    bullets.RemoveAt(index);
+            //                    basicGList[j].Health = basicGList[j].Health - basicList[i].Damage;
+            //                    if (basicGList[j].Health <= 0)
+            //                    {
+            //                        basicGList[j].pb.Visible = false;
+            //                        Form1.score = Form1.score + 50;
+            //                        Form1.coins = Form1.coins + 25;
+            //                        basicGList.RemoveAt(j);
+
+
+            //                    }
+            //                    break;
+            //                }
+            //            }
+            //        }
+            //        for (int j = 0; j < fastGList.Count; j++)
+            //        {
+
+            //            Rectangle GoblinRec = new Rectangle(fastGList[j].x, fastGList[j].y, fastGList[j].sizeX, fastGList[j].sizeY);
+
+            //            for (int k = 0; k < bullets.Count; k++)
+            //            {
+            //                int previousX = bullets[k].x;
+            //                if (fastGList[j].x > bullets[k].x)
+            //                {
+            //                    bullets[k].BMove("Right");
+            //                }
+            //                if (fastGList[j].x < bullets[k].x)
+            //                {
+            //                    bullets[k].BMove("Left");
+            //                }
+            //                if (fastGList[j].y > bullets[k].y)
+            //                {
+            //                    bullets[k].BMove("Up");
+            //                }
+            //                if (fastGList[j].y < bullets[k].y)
+            //                {
+            //                    bullets[k].BMove("Down");
+            //                }
+            //                if (bullets[k].x == previousX)
+            //                {
+            //                    bullets.RemoveAt(k);
+            //                }
+            //            }
+            //            foreach (Bullet c in bullets)
+            //            {
+            //                Rectangle bulletRec = new Rectangle(c.x, c.y, c.size, c.size);
+            //                if (bulletRec.IntersectsWith(GoblinRec))
+            //                {
+            //                    int index = bullets.IndexOf(c);
+            //                    bullets.RemoveAt(index);
+            //                    fastGList[j].Health = fastGList[j].Health - basicList[i].Damage;
+            //                    if (fastGList[j].Health <= 0)
+            //                    {
+            //                        fastGList[j].pb.Visible = false;
+            //                        Form1.score = Form1.score + 100;
+            //                        Form1.coins = Form1.coins + 50;
+            //                        fastGList.RemoveAt(j);
+            //                    }
+            //                    break;
+            //                }
+            //            }
+            //        }
+            //        for (int j = 0; j < strongGList.Count; j++)
+            //        {
+
+            //            Rectangle GoblinRec = new Rectangle(strongGList[j].x, strongGList[j].y, strongGList[j].sizeX, strongGList[j].sizeY);
+
+            //            for (int k = 0; k < bullets.Count; k++)
+            //            {
+            //                int previousX = bullets[k].x;
+            //                if (strongGList[j].x > bullets[k].x)
+            //                {
+            //                    bullets[k].BMove("Right");
+            //                }
+            //                if (strongGList[j].x < bullets[k].x)
+            //                {
+            //                    bullets[k].BMove("Left");
+            //                }
+            //                if (strongGList[j].y > bullets[k].y)
+            //                {
+            //                    bullets[k].BMove("Up");
+            //                }
+            //                if (strongGList[j].y < bullets[k].y)
+            //                {
+            //                    bullets[k].BMove("Down");
+            //                }
+            //                if (bullets[k].x == previousX)
+            //                {
+            //                    bullets.RemoveAt(k);
+            //                }
+            //            }
+            //            foreach (Bullet d in bullets)
+            //            {
+            //                Rectangle bulletRec = new Rectangle(d.x, d.y, d.size, d.size);
+            //                if (bulletRec.IntersectsWith(GoblinRec))
+            //                {
+            //                    int index = bullets.IndexOf(d);
+            //                    bullets.RemoveAt(index);
+            //                    strongGList[j].Health = strongGList[j].Health - basicList[i].Damage;
+            //                    if (strongGList[j].Health <= 0)
+            //                    {
+            //                        strongGList[j].pb.Visible = false;
+            //                        Form1.score = Form1.score + 200;
+            //                        Form1.coins = Form1.coins + 100;
+            //                        strongGList.RemoveAt(j);
+            //                    }
+            //                    break;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+
+            for (int i = 0; i < fastList.Count; i++)
+            {
+                for (int j = 0; j < basicGList.Count; j++)
+                {
+
+                    Rectangle GoblinRec = new Rectangle(basicGList[j].x, basicGList[j].y, basicGList[j].sizeX, basicGList[j].sizeY);
+                    foreach (Bullet b in bulletsF)
+                    {
+                        if (basicGList[j].x > b.x)
+                        {
+                            b.x = b.x + 2;
+
+                        }
+                        if (basicGList[j].x < b.x)
+                        {
+                            b.x = b.x - 2;
+
+                        }
+                        if (basicGList[j].y > b.y)
+                        {
+                            b.y = b.y + 2;
+
+                        }
+                        if (basicGList[j].y < b.y)
+                        {
+                            b.x = b.x - 2;
+
+                        }
+                    }
+                    //for (int k = 0; k < bulletsF.Count; k++)
+                    //{
+                    //    int previousX = bulletsF[k].x;
+                    //    if (basicGList[j].x > bulletsF[k].x)
+                    //    {
+                    //        bulletsF[k].BMove("Right");
+                            
+                    //    }
+                    //    if (basicGList[j].x < bulletsF[k].x)
+                    //    {
+                    //        bulletsF[k].BMove("Left");
+                    //    }
+                    //    if (basicGList[j].y > bulletsF[k].y)
+                    //    {
+                    //        bulletsF[k].BMove("Up");
+                    //    }
+                    //    if (basicGList[j].y < bulletsF[k].y)
+                    //    {
+                    //        bulletsF[k].BMove("Down");
+                    //    }
+                    //    if (bulletsF[k].x == previousX)
+                    //    {
+                    //        bulletsF.RemoveAt(k);
+                    //    }
+                    //}
+                    foreach (Bullet b in bulletsF)
+                    {
+                        Rectangle bulletRec = new Rectangle(b.x, b.y, b.size, b.size);
+                        if (bulletRec.IntersectsWith(GoblinRec))
+                        {
+                            int index = bulletsF.IndexOf(b);
+                            bulletsF.RemoveAt(index);
+                            basicGList[j].Health = basicGList[j].Health - fastList[i].Damage;
+                            if (basicGList[j].Health <= 0)
+                            {
+                                basicGList[j].pb.Visible = false;
+                                Form1.score = Form1.score + 50;
+                                Form1.coins = Form1.coins + 25;
+                                basicGList.RemoveAt(j);
+                            }
+                            break;
+                        }
+                    }
+                }
+                for (int j = 0; j < fastGList.Count; j++)
+                {
+
+                    Rectangle GoblinRec = new Rectangle(fastGList[j].x, fastGList[j].y, fastGList[j].sizeX, fastGList[j].sizeY);
+
+                    for (int k = 0; k < bulletsF.Count; k++)
+                    {
+                        int previousX = bulletsF[k].x;
+                        if (fastGList[j].x > bulletsF[k].x)
+                        {
+                            bulletsF[k].BMove("Right");
+                        }
+                        if (fastGList[j].x < bulletsF[k].x)
+                        {
+                            bulletsF[k].BMove("Left");
+                        }
+                        if (fastGList[j].y > bulletsF[k].y)
+                        {
+                            bulletsF[k].BMove("Up");
+                        }
+                        if (fastGList[j].y < bulletsF[k].y)
+                        {
+                            bulletsF[k].BMove("Down");
+                        }
+                        if (bulletsF[k].x == previousX)
+                        {
+                            bulletsF.RemoveAt(k);
+                        }
+                    }
+                    foreach (Bullet c in bulletsF)
+                    {
+                        Rectangle bulletRec = new Rectangle(c.x, c.y, c.size, c.size);
+                        if (bulletRec.IntersectsWith(GoblinRec))
+                        {
+                            int index = bulletsF.IndexOf(c);
+                            bulletsF.RemoveAt(index);
+                            fastGList[j].Health = fastGList[j].Health - fastList[i].Damage;
+                            if (fastGList[j].Health <= 0)
+                            {
+                                fastGList[j].pb.Visible = false;
+                                Form1.score = Form1.score + 100;
+                                Form1.coins = Form1.coins + 50;
+                                fastGList.RemoveAt(j);
+                            }
+                            break;
+                        }
+                    }
+                }
+                for (int j = 0; j < strongGList.Count; j++)
+                {
+
+                    Rectangle GoblinRec = new Rectangle(strongGList[j].x, strongGList[j].y, strongGList[j].sizeX, strongGList[j].sizeY);
+
+                    for (int k = 0; k < bulletsF.Count; k++)
+                    {
+                        int previousX = bulletsF[k].x;
+                        if (strongGList[j].x > bulletsF[k].x)
+                        {
+                            bulletsF[k].BMove("Right");
+                        }
+                        if (strongGList[j].x < bulletsF[k].x)
+                        {
+                            bulletsF[k].BMove("Left");
+                        }
+                        if (strongGList[j].y > bulletsF[k].y)
+                        {
+                            bulletsF[k].BMove("Up");
+                        }
+                        if (strongGList[j].y < bulletsF[k].y)
+                        {
+                            bulletsF[k].BMove("Down");
+                        }
+                        if (bulletsF[k].x == previousX)
+                        {
+                            bulletsF.RemoveAt(k);
+                        }
+                    }
+                    foreach (Bullet d in bulletsF)
+                    {
+                        Rectangle bulletRec = new Rectangle(d.x, d.y, d.size, d.size);
+                        if (bulletRec.IntersectsWith(GoblinRec))
+                        {
+                            int index = bulletsF.IndexOf(d);
+                            bulletsF.RemoveAt(index);
+                            strongGList[j].Health = strongGList[j].Health - fastList[i].Damage;
+                            if (strongGList[j].Health <= 0)
+                            {
+                                strongGList[j].pb.Visible = false;
+                                Form1.score = Form1.score + 200;
+                                Form1.coins = Form1.coins + 100;
+                                strongGList.RemoveAt(j);
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+
 
             label7.Text = ("Score:" + Convert.ToString(Form1.score));
             label8.Text = ("Coins:" + Convert.ToString(Form1.coins));
@@ -484,27 +816,251 @@ namespace Tower_Defense
             
             Refresh();
         }
+        private void BasicBullets()
+        {
+            
+                for (int i = 0; i < basicList.Count; i++)
+                {
+                    for (int j = 0; j < basicGList.Count; j++)
+                    {
+
+                        Rectangle GoblinRec = new Rectangle(basicGList[j].x, basicGList[j].y, basicGList[j].sizeX, basicGList[j].sizeY);
+                    var temp1= Math.Pow((basicList[i].x - basicGList[j].x), 2);
+                    var temp2 = Math.Pow((basicList[i].y - basicGList[j].y), 2);
+                    var result = Math.Sqrt(temp1 + temp2);
+                    //label9.Text = Convert.ToString(result);
+                    //label10.Text = Convert.ToString(result);
+                    if (result<150)
+                    { 
+                    for (int k = 0; k < bullets.Count; k++)
+                        {
+                            if (result < 150)
+                            {
+                                int previousX = bullets[k].x;
+                                if (basicGList[j].x > bullets[k].x)
+                                {
+                                    bullets[k].BMove("Right");
+                                }
+                                if (basicGList[j].x < bullets[k].x)
+                                {
+                                    bullets[k].BMove("Left");
+                                }
+                                if (basicGList[j].y > bullets[k].y)
+                                {
+                                    bullets[k].BMove("Up");
+                                }
+                                if (basicGList[j].y < bullets[k].y)
+                                {
+                                    bullets[k].BMove("Down");
+                                }
+                                if (bullets[k].x == previousX)
+                                {
+                                    bullets.RemoveAt(k);
+                                }
+                            }
+                            else
+                            {
+                                bullets.RemoveAt(k);
+                            }
+                        }
+                        foreach (Bullet b in bullets)
+                        {
+                            Rectangle bulletRec = new Rectangle(b.x, b.y, b.size, b.size);
+                            if (bulletRec.IntersectsWith(GoblinRec))
+                            {
+                                int index = bullets.IndexOf(b);
+                                bullets.RemoveAt(index);
+                                basicGList[j].Health = basicGList[j].Health - basicList[i].Damage;
+                                if (basicGList[j].Health <= 0)
+                                {
+                                    basicGList[j].pb.Visible = false;
+                                    Form1.score = Form1.score + 50;
+                                    Form1.coins = Form1.coins + 25;
+                                    basicGList.RemoveAt(j);
+
+
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    }
+              
+                    for (int j = 0; j < fastGList.Count; j++)
+                    {
+
+                        Rectangle GoblinRec = new Rectangle(fastGList[j].x, fastGList[j].y, fastGList[j].sizeX, fastGList[j].sizeY);
+                    var temp1 = Math.Pow((basicList[i].x - fastGList[j].x), 2);
+                    var temp2 = Math.Pow((basicList[i].y - fastGList[j].y), 2);
+                    var result = Math.Sqrt(temp1 + temp2);
+                    //label9.Text = Convert.ToString(result);
+                    //label10.Text = Convert.ToString(result);
+                    if (result < 150)
+                    {
+                        for (int k = 0; k < bullets.Count; k++)
+                        {
+                            if (result < 150)
+                            {
+                                int previousX = bullets[k].x;
+                                if (fastGList[j].x > bullets[k].x)
+                                {
+                                    bullets[k].BMove("Right");
+                                }
+                                if (fastGList[j].x < bullets[k].x)
+                                {
+                                    bullets[k].BMove("Left");
+                                }
+                                if (fastGList[j].y > bullets[k].y)
+                                {
+                                    bullets[k].BMove("Up");
+                                }
+                                if (fastGList[j].y < bullets[k].y)
+                                {
+                                    bullets[k].BMove("Down");
+                                }
+                                if (bullets[k].x == previousX)
+                                {
+                                    bullets.RemoveAt(k);
+                                }
+                            }
+                            else
+                            {
+                                bullets.RemoveAt(k);
+
+                            }
+                        }
+                        foreach (Bullet c in bullets)
+                        {
+                            Rectangle bulletRec = new Rectangle(c.x, c.y, c.size, c.size);
+                            if (bulletRec.IntersectsWith(GoblinRec))
+                            {
+                                int index = bullets.IndexOf(c);
+                                bullets.RemoveAt(index);
+                                fastGList[j].Health = fastGList[j].Health - basicList[i].Damage;
+                                if (fastGList[j].Health <= 0)
+                                {
+                                    fastGList[j].pb.Visible = false;
+                                    Form1.score = Form1.score + 100;
+                                    Form1.coins = Form1.coins + 50;
+                                    fastGList.RemoveAt(j);
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+                    for (int j = 0; j < strongGList.Count; j++)
+                    {
+                    Rectangle GoblinRec = new Rectangle(strongGList[j].x, strongGList[j].y, strongGList[j].sizeX, strongGList[j].sizeY);
+                    var temp1 = Math.Pow((basicList[i].x - strongGList[j].x), 2);
+                    var temp2 = Math.Pow((basicList[i].y - strongGList[j].y), 2);
+                    var result = Math.Sqrt(temp1 + temp2);
+                    //label9.Text = Convert.ToString(result);
+                    //label10.Text = Convert.ToString(result);
+                    
+                        
+
+                        for (int k = 0; k < bullets.Count; k++)
+                        {
+                        if (result < 150)
+                        {
+                            int previousX = bullets[k].x;
+                            if (strongGList[j].x > bullets[k].x)
+                            {
+                                bullets[k].BMove("Right");
+                            }
+                            if (strongGList[j].x < bullets[k].x)
+                            {
+                                bullets[k].BMove("Left");
+                            }
+                            if (strongGList[j].y > bullets[k].y)
+                            {
+                                bullets[k].BMove("Up");
+                            }
+                            if (strongGList[j].y < bullets[k].y)
+                            {
+                                bullets[k].BMove("Down");
+                            }
+                            if (bullets[k].x == previousX)
+                            {
+                                bullets.RemoveAt(k);
+                            }
+                        }
+                        else
+                        {
+                            bullets.RemoveAt(k);
+                        }
+                    }
+                   // else
+                    //{
+                        
+                    //}
+                        foreach (Bullet d in bullets)
+                        {
+                            Rectangle bulletRec = new Rectangle(d.x, d.y, d.size, d.size);
+                            if (bulletRec.IntersectsWith(GoblinRec))
+                            {
+                                int index = bullets.IndexOf(d);
+                                bullets.RemoveAt(index);
+                                strongGList[j].Health = strongGList[j].Health - basicList[i].Damage;
+                                if (strongGList[j].Health <= 0)
+                                {
+                                    strongGList[j].pb.Visible = false;
+                                    Form1.score = Form1.score + 200;
+                                    Form1.coins = Form1.coins + 100;
+                                    strongGList.RemoveAt(j);
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            //}
+        }
+        private void GameScreen_Paint(Object sender,PaintEventArgs e)
+        {
+            foreach (Bullet b in bullets)
+            {
+                e.Graphics.FillRectangle(b.bulletBrush, b.x, b.y, b.size, b.size);
+            }
+            foreach (Bullet c in bullets)
+            {
+                e.Graphics.FillRectangle(c.bulletBrush, c.x, c.y, c.size, c.size);
+            }
+            foreach (Bullet d in bullets)
+            {
+                e.Graphics.FillRectangle(d.bulletBrush, d.x, d.y, d.size, d.size);
+            }
+
+            foreach (Bullet b in bulletsF)
+            {
+                e.Graphics.FillRectangle(b.bulletBrush, b.x, b.y, b.size, b.size);
+            }
+            foreach (Bullet c in bulletsF)
+            {
+                e.Graphics.FillRectangle(c.bulletBrush, c.x, c.y, c.size, c.size);
+            }
+            foreach (Bullet d in bulletsF)
+            {
+                e.Graphics.FillRectangle(d.bulletBrush, d.x, d.y, d.size, d.size);
+            }
+        }
         private void Shoot()
         {
             for (int i =0; i< basicList.Count;i++)
             {
-                for (int j = 0; j < basicGList.Count ; j++)
+                for (int j = 0; j < basicGList.Count; j++)
                 {
                     var temp1 = Math.Pow((basicList[i].x - basicGList[j].x), 2);
                     var temp2 = Math.Pow((basicList[i].y - basicGList[j].y), 2);
                     var result = Math.Sqrt(temp1 + temp2);
+                    Distance = Convert.ToInt32(result);
                     if (result < 150)
                     {
-                        basicGList[j].Health = basicGList[j].Health - basicList[i].Damage;
-                        if (basicGList[j].Health <= 0)
-                        {
-                            basicGList[j].pb.Visible = false;
-                            Form1.score = Form1.score + 50;
-                            Form1.coins = Form1.coins + 25;
-                            basicGList.RemoveAt(j);
-                           
-                        }
-                       
+                        int x = basicList[i].x;
+                        int y = basicList[i].y;
+                        Bullet b = new Bullet(x, y, 10);
+                        bullets.Add(b);
                     }
                 }
                 for (int j = 0; j < fastGList.Count; j++)
@@ -512,17 +1068,13 @@ namespace Tower_Defense
                     var temp1 = Math.Pow((basicList[i].x - fastGList[j].x), 2);
                     var temp2 = Math.Pow((basicList[i].y - fastGList[j].y), 2);
                     var result = Math.Sqrt(temp1 + temp2);
+                    Distance = Convert.ToInt32(result);
                     if (result< 150)
                     {
-                        fastGList[j].Health = fastGList[j].Health - basicList[i].Damage;
-                        if (fastGList[j].Health <= 0)
-                        {
-                            fastGList[j].pb.Visible = false;
-                            Form1.score = Form1.score + 75;
-                            Form1.coins = Form1.coins + 50;
-                            fastGList.RemoveAt(j);
-
-                        }
+                        int x = basicList[i].x;
+                        int y = basicList[i].y;
+                        Bullet c = new Bullet(x, y, 10);
+                        bullets.Add(c);
                     }
                 }
                 for (int j = 0; j < strongGList.Count; j++)
@@ -530,18 +1082,13 @@ namespace Tower_Defense
                     var temp1 = Math.Pow((basicList[i].x - strongGList[j].x), 2);
                     var temp2 = Math.Pow((basicList[i].y - strongGList[j].y), 2);
                     var result = Math.Sqrt(temp1 + temp2);
+                    Distance = Convert.ToInt32(result);
                     if (result < 150)
                     {
-                        strongGList[j].Health = strongGList[j].Health - basicList[i].Damage;
-                       // label9.Text = Convert.ToString(strongGList[j].Health);
-                        if (strongGList[j].Health <= 0)
-                        {
-                            strongGList[j].pb.Visible = false;
-                            Form1.score = Form1.score + 200;
-                            Form1.coins = Form1.coins + 100;
-                            strongGList.RemoveAt(j);
-
-                        }
+                        int x = basicList[i].x;
+                        int y = basicList[i].y;
+                        Bullet d = new Bullet(x, y, 10);
+                        bullets.Add(d);
                     }
                 }
             }
@@ -557,19 +1104,12 @@ namespace Tower_Defense
                     var temp1 = Math.Pow((fastList[i].x - basicGList[j].x), 2);
                     var temp2 = Math.Pow((fastList[i].y - basicGList[j].y), 2);
                     var result = Math.Sqrt(temp1 + temp2);
-                    label10.Text = Convert.ToString(MaxS);
-                   // label9.Text = ()
                     if (result <150)
                     {
-                        basicGList[j].Health = basicGList[j].Health - fastList[i].Damage;
-                       // label6.Text = Convert.ToString(basicGList[j].Health);
-                        if (basicGList[j].Health <= 0)
-                        {
-                            basicGList[j].pb.Visible = false;
-                            Form1.score = Form1.score + 50;
-                            Form1.coins = Form1.coins + 25;
-                             basicGList.RemoveAt(j);
-                        }
+                        int x = fastList[i].x;
+                        int y = fastList[i].y;
+                        Bullet b = new Bullet(x, y, 10);
+                        bulletsF.Add(b);
                     }
                 }               
                 for (int j = 0; j < fastGList.Count; j++)
@@ -579,17 +1119,10 @@ namespace Tower_Defense
                     var result = Math.Sqrt(temp1 + temp2);
                     if (result < 150)
                     {
-                        
-                        fastGList[j].Health = fastGList[j].Health - fastList[i].Damage;
-                       // label9.Text = Convert.ToString(fastGList[j].Health);
-                        if (fastGList[j].Health <= 0)
-                        {
-                            fastGList[j].pb.Visible = false;
-                            Form1.score = Form1.score + 75;
-                            Form1.coins = Form1.coins + 50;
-                            fastGList.RemoveAt(j);
-
-                        }
+                        int x = fastList[i].x;
+                        int y = fastList[i].y;
+                        Bullet c = new Bullet(x, y, 10);
+                        bulletsF.Add(c);
                     }
                 }
                 for (int j = 0; j < strongGList.Count; j++)
@@ -599,17 +1132,10 @@ namespace Tower_Defense
                     var result = Math.Sqrt(temp1 + temp2);
                     if (result < 150)
                     {
-
-                        strongGList[j].Health = strongGList[j].Health - fastList[i].Damage;
-                       // label9.Text = Convert.ToString(strongGList[j].Health);
-                        if (strongGList[j].Health <= 0)
-                        {
-                            strongGList[j].pb.Visible = false;
-                            Form1.score = Form1.score + 200;
-                            Form1.coins = Form1.coins + 100;
-                            strongGList.RemoveAt(j);
-
-                        }
+                        int x = fastList[i].x;
+                        int y = fastList[i].y;
+                        Bullet d = new Bullet(x, y, 10);
+                        bulletsF.Add(d);
                     }
                 }
             }
