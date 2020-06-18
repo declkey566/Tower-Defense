@@ -995,6 +995,10 @@ namespace Tower_Defense
                 basicNum = 0;
                 FastNum = 0;
                 StrongNum = 0;
+                counterF = 0;
+                counter = 0;
+                counterS = 0;
+                  
                 foreach (Tower fast in fastList)
                 {
                     Form1.Oldfast = Form1.Oldfast + 1;
