@@ -74,7 +74,7 @@ namespace Tower_Defense
         {
             if (Form1.GamePlayed == 0)
             {
-               // HP = 100;
+                Form1.HP = 100;
                 int newX2 = label2.Location.X - pictureBox20.Location.X;
                 int newY2 = label2.Location.Y - pictureBox20.Location.Y;
                 label2.Location = new Point(newX2, newY2);
