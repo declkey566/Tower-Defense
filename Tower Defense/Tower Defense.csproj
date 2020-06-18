@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bullet.cs" />
+    <Compile Include="EndScreenA.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EndScreenA.Designer.cs">
+      <DependentUpon>EndScreenA.cs</DependentUpon>
+    </Compile>
     <Compile Include="EndScreenB.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -81,6 +87,9 @@
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Tower.cs" />
+    <EmbeddedResource Include="EndScreenA.resx">
+      <DependentUpon>EndScreenA.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EndScreenB.resx">
       <DependentUpon>EndScreenB.cs</DependentUpon>
     </EmbeddedResource>

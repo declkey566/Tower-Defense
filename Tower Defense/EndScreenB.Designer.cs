@@ -81,12 +81,14 @@
             // 
             // label4
             // 
-            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.BackColor = System.Drawing.Color.Black;
+            this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(278, 237);
             this.label4.MaximumSize = new System.Drawing.Size(500, 500);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(222, 293);
             this.label4.TabIndex = 4;
+            this.label4.Text = "test";
             // 
             // EndScreenB
             // 
