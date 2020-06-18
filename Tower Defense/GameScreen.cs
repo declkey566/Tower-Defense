@@ -657,29 +657,6 @@ namespace Tower_Defense
                 {
 
                     Rectangle GoblinRec = new Rectangle(basicGList[j].x, basicGList[j].y, basicGList[j].sizeX, basicGList[j].sizeY);
-                    //foreach (Bullet b in bulletsF)
-                    //{
-                    //    if (basicGList[j].x > b.x)
-                    //    {
-                    //        b.x = b.x + 2;
-
-                    //    }
-                    //    if (basicGList[j].x < b.x)
-                    //    {
-                    //        b.x = b.x - 2;
-
-                    //    }
-                    //    if (basicGList[j].y > b.y)
-                    //    {
-                    //        b.y = b.y + 2;
-
-                    //    }
-                    //    if (basicGList[j].y < b.y)
-                    //    {
-                    //        b.x = b.x - 2;
-
-                    //    }
-                    //}
                     for (int k = 0; k < bulletsF.Count; k++)
                     {
                         int previousX = bulletsF[k].x;
@@ -828,32 +805,9 @@ namespace Tower_Defense
                 {
 
                     Rectangle GoblinRec = new Rectangle(basicGList[j].x, basicGList[j].y, basicGList[j].sizeX, basicGList[j].sizeY);
-                    //foreach (Bullet b in bulletsS)
-                    //{
-                    //    if (basicGList[j].x > b.x)
-                    //    {
-                    //        b.x = b.x + 2;
-
-                    //    }
-                    //    if (basicGList[j].x < b.x)
-                    //    {
-                    //        b.x = b.x - 2;
-
-                    //    }
-                    //    if (basicGList[j].y > b.y)
-                    //    {
-                    //        b.y = b.y + 2;
-
-                    //    }
-                    //    if (basicGList[j].y < b.y)
-                    //    {
-                    //        b.x = b.x - 2;
-
-                    //    }
-                    //}
                     for (int k = 0; k < bulletsS.Count; k++)
                     {
-                        int previousX = bulletsS[k].x;
+                      //  int previousX = bulletsS[k].x;
                         if (basicGList[j].x > bulletsS[k].x)
                         {
                             bulletsS[k].BMove("Right");
@@ -871,10 +825,10 @@ namespace Tower_Defense
                         {
                             bulletsS[k].BMove("Down");
                         }
-                        if (bulletsS[k].x == previousX)
-                        {
-                            bulletsS.RemoveAt(k);
-                        }
+                      //  if (bulletsS[k].x == previousX)
+                       // {
+                         //   bulletsS.RemoveAt(k);
+                       // }
                     }
                     foreach (Bullet b in bulletsS)
                     {
@@ -1211,6 +1165,19 @@ namespace Tower_Defense
             {
                 e.Graphics.FillRectangle(d.bulletBrush, d.x, d.y, d.size, d.size);
             }
+
+            foreach (Bullet b in bulletsS)
+            {
+                e.Graphics.FillRectangle(b.bulletBrush, b.x, b.y, b.size, b.size);
+            }
+            foreach (Bullet c in bulletsS)
+            {
+                e.Graphics.FillRectangle(c.bulletBrush, c.x, c.y, c.size, c.size);
+            }
+            foreach (Bullet d in bulletsS)
+            {
+                e.Graphics.FillRectangle(d.bulletBrush, d.x, d.y, d.size, d.size);
+            }
         }
         private void Shoot()
         {
@@ -1315,14 +1282,10 @@ namespace Tower_Defense
                     var result = Math.Sqrt(temp1 + temp2);
                     if (result < 150)
                     {
-                        basicGList[j].Health = basicGList[j].Health - strongList[i].Damage;
-                        if (basicGList[j].Health <= 0)
-                        {
-                            basicGList[j].pb.Visible = false;
-                            Form1.score = Form1.score + 50;
-                            Form1.coins = Form1.coins + 25;
-                            basicGList.RemoveAt(j);
-                        }
+                        int x = strongList[i].x;
+                        int y = strongList[i].y;
+                        Bullet b = new Bullet(x, y, 10);
+                        bulletsS.Add(b);
                     }
                 }
                 for (int j = 0; j < fastGList.Count; j++)
@@ -1333,15 +1296,10 @@ namespace Tower_Defense
                     if (result < 150)
                     {
 
-                        fastGList[j].Health = fastGList[j].Health - strongList[i].Damage;
-                        if (fastGList[j].Health <= 0)
-                        {
-                            fastGList[j].pb.Visible = false;
-                            Form1.score = Form1.score + 75;
-                            Form1.coins = Form1.coins + 50;
-                            fastGList.RemoveAt(j);
-
-                        }
+                        int x = strongList[i].x;
+                        int y = strongList[i].y;
+                        Bullet c = new Bullet(x, y, 10);
+                        bulletsS.Add(c);
                     }
                 }
                 for (int j = 0; j < strongGList.Count; j++)
@@ -1351,16 +1309,10 @@ namespace Tower_Defense
                     var result = Math.Sqrt(temp1 + temp2);
                     if (result < 150)
                     {
-
-                        strongGList[j].Health = strongGList[j].Health - strongList[i].Damage;
-                        if (strongGList[j].Health <= 0)
-                        {
-                            strongGList[j].pb.Visible = false;
-                            Form1.score = Form1.score + 200;
-                            Form1.coins = Form1.coins + 100;
-                            strongGList.RemoveAt(j);
-
-                        }
+                        int x = strongList[i].x;
+                        int y = strongList[i].y;
+                        Bullet d = new Bullet(x, y, 10);
+                        bulletsS.Add(d);
                     }
                 }
             }

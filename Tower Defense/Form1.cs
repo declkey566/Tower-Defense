@@ -14,7 +14,7 @@ namespace Tower_Defense
     {
         public static string userName;
         public static int score =0;
-        public  static int coins=100;
+        public  static int coins=150;
         public static int basic = 0;
         public static int fast = 0;
         public static int strong = 0;
