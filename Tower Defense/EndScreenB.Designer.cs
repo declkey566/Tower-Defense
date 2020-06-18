@@ -31,9 +31,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -63,11 +65,21 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("RomanT", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(275, 203);
+            this.label3.Location = new System.Drawing.Point(275, 227);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(225, 34);
+            this.label3.Size = new System.Drawing.Size(244, 34);
             this.label3.TabIndex = 3;
-            this.label3.Text = "LEADERBOARD";
+            this.label3.Text = "Recent Scores";
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.Black;
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(278, 261);
+            this.label4.MaximumSize = new System.Drawing.Size(500, 500);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(222, 293);
+            this.label4.TabIndex = 4;
             // 
             // pictureBox1
             // 
@@ -79,22 +91,22 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // label4
+            // pictureBox2
             // 
-            this.label4.BackColor = System.Drawing.Color.Black;
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(278, 237);
-            this.label4.MaximumSize = new System.Drawing.Size(500, 500);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(222, 293);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "test";
+            this.pictureBox2.Image = global::Tower_Defense.Properties.Resources.goblin___Copy;
+            this.pictureBox2.Location = new System.Drawing.Point(577, 300);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(225, 269);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 11;
+            this.pictureBox2.TabStop = false;
             // 
             // EndScreenB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -103,6 +115,7 @@
             this.Name = "EndScreenB";
             this.Size = new System.Drawing.Size(805, 569);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,5 +128,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

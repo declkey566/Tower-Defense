@@ -15,6 +15,12 @@ namespace Tower_Defense
         public EndScreenA()
         {
             InitializeComponent();
+            label2.Text = ("Final Score: " + Convert.ToString(Form1.score));
+            foreach (string score in Form1.Scores)
+            {
+                label4.Text += (score + "\n");
+
+            }
         }
     }
 }

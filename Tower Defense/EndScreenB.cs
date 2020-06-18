@@ -15,6 +15,7 @@ namespace Tower_Defense
         public EndScreenB()
         {
             InitializeComponent();
+            pictureBox2.Parent = pictureBox1;
             label2.Text = ("Final Score: " + Convert.ToString(Form1.score));
             foreach(string score in Form1.Scores)
            {
